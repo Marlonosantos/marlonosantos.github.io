@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Portfólio | Design Técnico e 3D</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,41 @@
         /* --- RESET E ESTILOS GERAIS --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body, html { height: 100%; width: 100%; background-color: #1a1a1a; color: #f4f4f4; overflow: hidden; }
+
+        /* =========================================================
+           AVISO PARA GIRAR O CELULAR (APENAS MOBILE EM PÉ)
+           ========================================================= */
+        #rotate-device-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #080808; z-index: 20000;
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            padding: 30px; text-align: center; color: #f4f4f4;
+        }
+        .rotate-icon-wrap {
+            width: 70px; height: 70px; margin-bottom: 28px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .rotate-phone-svg {
+            width: 46px; height: 46px; stroke: #c2b2a3; stroke-width: 1.5; fill: none;
+            animation: rotatePhoneAnim 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+        }
+        @keyframes rotatePhoneAnim {
+            0%, 15% { transform: rotate(0deg); }
+            50%, 75% { transform: rotate(-90deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .rotate-title {
+            font-size: 0.75rem; font-weight: 400; letter-spacing: 5px; color: #ffffff;
+            text-transform: uppercase; margin-bottom: 10px;
+        }
+        .rotate-subtitle {
+            font-size: 0.6rem; font-weight: 300; letter-spacing: 2px; color: #888888;
+            max-width: 240px; line-height: 1.7;
+        }
+
+        @media only screen and (max-width: 768px) and (orientation: portrait) {
+            #rotate-device-overlay { display: flex; }
+        }
 
         /* =========================================================
            PRELOADER CIRCULAR COM INVERSÃO DE CORES (PRETO -> BRANCO)
@@ -75,12 +110,22 @@
         }
 
         /* =========================================================
-           CURSOR CUSTOMIZADO
+           CURSOR CUSTOMIZADO (OCULTO DURANTE O PRELOADER)
            ========================================================= */
         @media (pointer: fine) {
-            body, html, .grid-pic { cursor: none !important; }
-            .cursor-dot { position: fixed; width: 6px; height: 6px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: background-color 0.3s; mix-blend-mode: difference; }
-            .cursor-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; pointer-events: none; z-index: 10000; transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; mix-blend-mode: difference; }
+            body, html, .grid-pic, #preloader { cursor: none !important; }
+            .cursor-dot {
+                position: fixed; width: 6px; height: 6px; background-color: #fff; border-radius: 50%;
+                pointer-events: none; z-index: 10001; mix-blend-mode: difference;
+                opacity: 0; transition: background-color 0.3s, opacity 0.6s ease;
+            }
+            .cursor-ring {
+                position: fixed; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%;
+                pointer-events: none; z-index: 10000; mix-blend-mode: difference;
+                opacity: 0; transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s, opacity 0.6s ease;
+            }
+            body.site-loaded .cursor-dot,
+            body.site-loaded .cursor-ring { opacity: 1; }
             body.cursor-hover .cursor-dot { background-color: transparent; }
             body.cursor-hover .cursor-ring { width: 60px; height: 60px; background-color: rgba(255,255,255,0.1); backdrop-filter: blur(2px); border-color: rgba(255,255,255,0.8); }
         }
@@ -510,9 +555,106 @@
         .finale-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; color: rgba(255,255,255,0.8); }
         .finale-title { font-family: 'Poppins', sans-serif; font-size: 3.5vw; font-weight: 200; letter-spacing: 12px; text-transform: uppercase; margin-bottom: 30px; }
         .finale-divider { width: 50px; height: 1px; background-color: #fff; margin: 0 0 35px 0; }
+
+        /* =========================================================
+           ESCALA PROPORCIONAL PARA CELULAR NA HORIZONTAL (LANDSCAPE)
+           Não afeta monitores de computador
+           ========================================================= */
+        @media only screen and (max-height: 540px) and (orientation: landscape) {
+            /* Topo e Barra Lateral */
+            .top-nav { padding: 14px 25px; }
+            .logo { font-size: 1.05rem; letter-spacing: 1.5px; }
+            .nav-right { font-size: 0.58rem; }
+            .right-sidebar { right: 8px; gap: 10px; }
+            .side-label { font-size: 0.52rem; letter-spacing: 2px; }
+            .side-dots { gap: 4px; }
+            .dot-item { width: 12px; height: 12px; }
+            .dot-item::after { width: 4px; height: 4px; }
+
+            /* Slide 1: Home */
+            .home-content h1 { font-size: 2.1rem; letter-spacing: 3px; }
+            .home-content p { font-size: 0.65rem; }
+
+            /* Slide 2: Projetos */
+            .project-column { padding: 0 12px; }
+            .project-info .category { font-size: 0.5rem; letter-spacing: 2px; margin-bottom: 6px; }
+            .project-info .title { font-size: 1.05rem; margin-bottom: 10px; }
+
+            /* Slide 3: Galeria 3D */
+            .info-title { font-size: 0.9rem; letter-spacing: 2px; }
+            .info-subtitle { font-size: 0.6rem; }
+            .close-hint { top: 16px; right: 40px; padding: 6px 14px; font-size: 0.52rem; }
+
+            /* Slide 4: Documentação Técnica */
+            .grid-text-header { top: 22px; left: 25px; }
+            .grid-text-header h3 { font-size: 0.72rem; letter-spacing: 3px; }
+            .grid-text-header p { font-size: 0.55rem; }
+            .grid-cell { padding: 14px; }
+            .grid-nav-controls { bottom: 16px; right: 25px; gap: 10px; }
+            .grid-arr { width: 32px; height: 32px; }
+            .close-grid-hint { top: 45px; right: 25px; padding: 6px 14px; font-size: 0.52rem; }
+
+            /* Slide 5: About Me (Escala proporcional preservando todo o layout) */
+            .about-side-menu { left: 16px; gap: 16px; }
+            .about-nav-item { gap: 10px; height: 14px; }
+            .about-nav-item span { font-size: 0.45rem; letter-spacing: 1.5px; }
+            .nav-ring { width: 16px; height: 16px; }
+            .about-tab {
+                transform: translate(-50%, -50%) scale(0.62);
+                width: 46vw; max-height: 135vh;
+            }
+            .timeline-viewport { max-height: 75vh; }
+
+            /* Slide 6: References (Mantém exatamente os 3 cards e logos em escala) */
+            .testi-content {
+                transform: scale(0.5);
+                transform-origin: center center;
+            }
+            .testi-chevron-left { left: 18px; width: 18px; height: 18px; border-width: 3px; }
+            .testi-chevron-right { right: 18px; width: 18px; height: 18px; border-width: 3px; }
+
+            /* Slide 7: Contact */
+            .split-bl { bottom: 12px; left: 25px; font-size: 0.45rem; line-height: 1.7; }
+            .contact-center-card {
+                transform: translate(-50%, -50%) scale(0.58);
+            }
+            .split-bottom-full-container {
+                bottom: 6px;
+                transform: translateX(-50%) scale(0.58);
+                transform-origin: bottom center;
+            }
+
+            /* Prancha Horizontal Interna dos Projetos */
+            .text-block-cover { top: 18vh; width: 25vw; }
+            .proj-eyebrow { font-size: 0.45rem; letter-spacing: 3px; margin-bottom: 5px; }
+            .proj-title { font-size: 1.8vw; letter-spacing: 4px; margin-bottom: 10px; }
+            .proj-divider { width: 25px; margin-bottom: 14px; }
+            .proj-paragraph { font-size: 0.5rem; line-height: 1.85; }
+            .proj-text-large { font-size: 0.55rem; line-height: 1.85; min-width: 200px; width: 28vw; }
+            .coord-block { top: 22vh; }
+            .coord-title { font-size: 0.52rem; letter-spacing: 4px; margin-bottom: 6px; }
+            .coord-data { font-size: 0.48rem; line-height: 1.7; }
+            .compass { bottom: 18vh; }
+            .blueprint-label { font-size: 0.42rem; }
+            .label-num { font-size: 0.58rem; }
+            .label-text { font-size: 0.42rem; letter-spacing: 3px; }
+            .close-btn { top: 4vh; right: 3vw; font-size: 0.5rem; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- AVISO PARA GIRAR O CELULAR (APARECE SOMENTE NO CELULAR EM PÉ) -->
+    <div id="rotate-device-overlay">
+        <div class="rotate-icon-wrap">
+            <svg class="rotate-phone-svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+        </div>
+        <div class="rotate-title">Please Rotate Your Device</div>
+        <div class="rotate-subtitle">For the full architectural experience, please view this portfolio in landscape mode.</div>
+    </div>
 
     <!-- TELA DE CARREGAMENTO INICIAL CIRCULAR COM INVERSÃO DE CORES -->
     <div id="preloader">
@@ -560,7 +702,7 @@
         
         <!-- 1. HOME -->
         <section class="section" data-name="Home" data-theme="dark">
-            <video class="home-video" autoplay muted loop>
+            <video class="home-video" autoplay muted loop playsinline>
                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
             </video>
             <div class="home-content">
@@ -1478,6 +1620,7 @@
         });
         window.addEventListener('touchmove', e => {
             if(isProjectOpen) {
+                e.preventDefault();
                 let delta = startX - e.touches[0].clientX; startX = e.touches[0].clientX;
                 targetScroll += delta * 2.5;
                 targetScroll = Math.max(0, Math.min(targetScroll, hTrack.scrollWidth - window.innerWidth));
@@ -1486,7 +1629,7 @@
         window.addEventListener('touchend', e => {
             if (isSlideAnimating || isGalleryViewerOpen || isGridViewerOpen || isProjectOpen) return;
             let touchEndY = e.changedTouches[0].clientY;
-            if (touchStartY - touchEndY > 50) goToSlide(currentSlide + 1); else if (touchEndY - touchStartY > 50) goToSlide(currentSlide - 1);
+            if (touchStartY - touchEndY > 40) goToSlide(currentSlide + 1); else if (touchEndY - touchStartY > 40) goToSlide(currentSlide - 1);
         });
 
         const columns = document.querySelectorAll('.project-column'); const slide2Bg = document.getElementById('slide2Bg');
@@ -1614,6 +1757,7 @@
                     applyInversion(100);
                     setTimeout(() => {
                         if (preloader) preloader.classList.add('loaded');
+                        document.body.classList.add('site-loaded');
                     }, 450);
                 } else {
                     requestAnimationFrame(animateProgress);
