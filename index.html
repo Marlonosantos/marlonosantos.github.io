@@ -15,12 +15,72 @@
         body, html { height: 100%; width: 100%; background-color: #1a1a1a; color: #f4f4f4; overflow: hidden; }
 
         /* =========================================================
+           PRELOADER CIRCULAR MINIMALISTA E ELEGANTE
+           ========================================================= */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #080808; z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 1; visibility: visible;
+            transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s, visibility 1.5s 0.35s;
+            will-change: opacity, visibility;
+        }
+        #preloader.loaded {
+            opacity: 0; visibility: hidden; pointer-events: none;
+        }
+        .preloader-content {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        #preloader.loaded .preloader-content {
+            opacity: 0; transform: scale(1.05);
+        }
+        .preloader-circle-wrap {
+            position: relative; width: 140px; height: 140px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 32px;
+        }
+        .preloader-outer-halo {
+            position: absolute; width: 164px; height: 164px;
+            border: 1px solid rgba(194, 178, 163, 0.12); border-radius: 50%;
+            animation: haloPulse 3.5s ease-in-out infinite;
+        }
+        @keyframes haloPulse {
+            0%, 100% { transform: scale(0.97); opacity: 0.3; }
+            50% { transform: scale(1.03); opacity: 0.75; }
+        }
+        .preloader-svg {
+            width: 140px; height: 140px; transform: rotate(-90deg);
+        }
+        .preloader-ring-bg {
+            fill: none; stroke: rgba(255, 255, 255, 0.07); stroke-width: 1.2;
+        }
+        .preloader-ring-fill {
+            fill: none; stroke: #c2b2a3; stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-dasharray: 377; /* 2 * PI * 60 */
+            stroke-dashoffset: 377;
+        }
+        .preloader-counter {
+            position: absolute; font-size: 0.95rem; font-weight: 200;
+            letter-spacing: 3px; color: #f4f4f4; padding-left: 3px;
+        }
+        .preloader-title {
+            font-size: 0.75rem; font-weight: 300; letter-spacing: 8px; color: rgba(255, 255, 255, 0.85);
+            text-transform: uppercase; margin-bottom: 6px; text-align: center; padding-left: 8px;
+        }
+        .preloader-subtitle {
+            font-size: 0.5rem; font-weight: 300; letter-spacing: 4px; color: #c2b2a3;
+            text-transform: uppercase; opacity: 0.7; text-align: center; padding-left: 4px;
+        }
+
+        /* =========================================================
            CURSOR CUSTOMIZADO
            ========================================================= */
         @media (pointer: fine) {
             body, html, .grid-pic { cursor: none !important; }
-            .cursor-dot { position: fixed; width: 6px; height: 6px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; transition: background-color 0.3s; mix-blend-mode: difference; }
-            .cursor-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; mix-blend-mode: difference; }
+            .cursor-dot { position: fixed; width: 6px; height: 6px; background-color: #fff; border-radius: 50%; pointer-events: none; z-index: 10001; transition: background-color 0.3s; mix-blend-mode: difference; }
+            .cursor-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.4); border-radius: 50%; pointer-events: none; z-index: 10000; transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; mix-blend-mode: difference; }
             body.cursor-hover .cursor-dot { background-color: transparent; }
             body.cursor-hover .cursor-ring { width: 60px; height: 60px; background-color: rgba(255,255,255,0.1); backdrop-filter: blur(2px); border-color: rgba(255,255,255,0.8); }
         }
@@ -103,9 +163,9 @@
         .close-hint { position: absolute; top: 40px; right: 80px; color: #fff; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; background: rgba(0,0,0,0.4); padding: 10px 20px; border-radius: 30px; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; z-index: 100; cursor: pointer; }
         .close-hint.active { opacity: 1; transition-delay: 1.5s; pointer-events: auto; }
 
-        /* --- SLIDE 4: TECHNICAL DOCUMENTATION --- */
-        .grid-viewport { width: 100vw; height: 100vh; position: relative; background-color: #111; background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; overflow: hidden; display: flex; }
-        .grid-viewport::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1; pointer-events: none; }
+        /* --- SLIDE 4: TECHNICAL DOCUMENTATION (FUNDO SUBSTITUÍDO POR RENDER DO PORTFÓLIO) --- */
+        .grid-viewport { width: 100vw; height: 100vh; position: relative; background-color: #111; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png'); background-size: cover; background-position: center; overflow: hidden; display: flex; }
+        .grid-viewport::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1; pointer-events: none; }
         .grid-track { display: grid; grid-template-columns: repeat(6, 33.333vw); grid-template-rows: 33.333vh 33.333vh 33.333vh; width: 200vw; height: 100vh; position: relative; z-index: 2; transition: transform 0.9s cubic-bezier(0.77, 0, 0.17, 1); mix-blend-mode: screen; }
         .grid-text-header { position: absolute; top: 55px; left: 55px; z-index: 20; color: #fff; pointer-events: none; opacity: 0; transform: translateY(15px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .section.is-active .grid-text-header { opacity: 1; transform: translateY(0); transition-delay: 2.2s; }
@@ -164,12 +224,12 @@
            ========================================================= */
         .about-container-v2 { width: 100vw; height: 100vh; position: relative; background-color: #050505; display: flex; overflow: hidden; }
 
-        /* 1. Imagem Esquerda - Ajustada para descer e alinhar à direita */
+        /* 1. Imagem Esquerda */
         .about-left-image { 
             width: 55vw; height: 100vh; position: relative; 
             background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/f_auto,q_auto/Gemini_Generated_Image_hgkr97hgkr97hgkr'); 
             background-size: cover; 
-            background-position: 80% 20%; /* 20% p a direita, descer 30% da posição original (100% 50%) */
+            background-position: 80% 20%;
             background-repeat: no-repeat;
             opacity: 0; transform: translateX(-50px); 
             transition: opacity 1.2s ease 0.2s, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s; 
@@ -192,8 +252,7 @@
         .about-nav-item.active .nav-ring { border-color: #c2b2a3; }
         .about-nav-item.active span { color: #c2b2a3; font-weight: 500; }
 
-        /* 3. Área de Conteúdo (Lado Direito - Margens e Centro Geométrico) */
-        /* Ajustado para mover todo o conteúdo 5vw para a esquerda (-5vw) */
+        /* 3. Área de Conteúdo */
         .about-right-content { width: 45vw; height: 100vh; position: relative; z-index: 10; opacity: 0; pointer-events: none; transform: translateX(-5vw); }
         .section.is-active .about-right-content { animation: contentFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards; pointer-events: auto; }
         
@@ -213,7 +272,7 @@
         .tab-header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; font-size: 0.85rem; letter-spacing: 5px; color: #fff; text-transform: uppercase; width: 100%; flex-shrink: 0; }
         .tab-header-line { flex-grow: 1; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 100%); max-width: 150px; }
 
-        /* Estilos Visuais - TAB HOME (Justificação Letra a Letra Perfeita) */
+        /* Estilos Visuais - TAB HOME */
         .intro-eyebrow { font-size: 0.6rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; width: 100%; }
         .intro-eyebrow-line { flex-grow: 1; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 100%); max-width: 150px; }
         
@@ -235,37 +294,54 @@
         }
         .tab-scroll-area::-webkit-scrollbar { display: none; }
 
-        /* Estilos Visuais - TAB EXPERIENCE (TIMELINE EM SLIDER COM SCROLL INVISÍVEL E SCROLL SUAVE) */
+        /* =========================================================
+           TAB EXPERIENCE (CORRIGIDA E ESTABILIZADA)
+           ========================================================= */
         .timeline-viewport { 
-            position: relative; padding-left: 30px; width: 100%; margin-top: 5px; 
-            height: 50vh; 
-            overflow-y: auto; /* Permite scroll se o texto for gigante */
-            scrollbar-width: none; -ms-overflow-style: none; /* Esconde scrollbar Firefox/Edge */
+            position: relative; width: 100%; margin-top: 5px; 
+            max-height: 55vh; 
+            overflow-y: auto; overscroll-behavior: contain;
+            scrollbar-width: none; -ms-overflow-style: none;
         }
-        .timeline-viewport::-webkit-scrollbar { display: none; } /* Esconde scrollbar Chrome/Safari */
+        .timeline-viewport::-webkit-scrollbar { display: none; }
         
-        .timeline-line { position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.2); z-index: 1; }
+        .timeline-track { 
+            position: relative; width: 100%; padding-left: 30px; padding-bottom: 10px; z-index: 2; 
+        }
+        .timeline-line { 
+            position: absolute; left: 6px; top: 6px; bottom: 10px; width: 1px; 
+            background: rgba(255,255,255,0.2); z-index: 1; pointer-events: none;
+        }
         
-        /* REMOVIDO o translate forcado e o padding excessivo de 20vh */
-        .timeline-track { position: relative; width: 100%; z-index: 2; padding-bottom: 20px; }
+        .timeline-item { 
+            position: relative; margin-bottom: 22px; cursor: pointer; 
+            transition: opacity 0.35s ease; opacity: 0.4; 
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item.active { opacity: 1; cursor: default; }
         
-        .timeline-item { position: relative; margin-bottom: 20px; cursor: pointer; transition: all 0.4s ease; opacity: 0.4; }
-        .timeline-item.active { opacity: 1; margin-bottom: 30px; cursor: default; }
-        
-        .timeline-dot { position: absolute; left: -27px; top: 6px; width: 7px; height: 7px; background: #c2b2a3; border-radius: 50%; box-shadow: 0 0 0 4px #050505; transition: all 0.3s; }
+        .timeline-dot { 
+            position: absolute; left: -27px; top: 6px; width: 7px; height: 7px; 
+            background: #c2b2a3; border-radius: 50%; box-shadow: 0 0 0 4px #050505; 
+            transition: transform 0.3s ease, background-color 0.3s ease; z-index: 2;
+        }
         .timeline-item.active .timeline-dot { transform: scale(1.4); background: #fff; }
-        .timeline-item:hover:not(.active) { opacity: 0.7; }
+        .timeline-item:hover:not(.active) { opacity: 0.75; }
         .timeline-item:hover:not(.active) .timeline-dot { background: #fff; }
 
         .tl-header { display: flex; flex-direction: column; gap: 3px; }
         .tl-title { font-size: 1rem; font-weight: 500; color: #fff; letter-spacing: 1px; }
         .tl-role { font-size: 0.65rem; color: #c2b2a3; text-transform: uppercase; letter-spacing: 1px; }
 
-        .tl-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease; opacity: 0; }
-        .timeline-item.active .tl-body { max-height: 800px; opacity: 1; margin-top: 15px; }
+        .tl-body { 
+            max-height: 0; overflow: hidden; opacity: 0; margin-top: 0;
+            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.35s ease, margin-top 0.35s ease; 
+        }
+        .timeline-item.active .tl-body { opacity: 1; margin-top: 14px; }
 
         .tl-body ul { list-style: none; padding-left: 0; margin: 0; }
         .tl-body li { font-size: 0.75rem; line-height: 1.8; color: #999; margin-bottom: 10px; position: relative; padding-left: 15px; text-align: justify; font-weight: 300; }
+        .tl-body li:last-child { margin-bottom: 0; }
         .tl-body li::before { content: '•'; position: absolute; left: 0; color: #555; }
 
         /* Controles da Timeline (Setinhas) */
@@ -273,7 +349,7 @@
         .btn-tl { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
         .btn-tl:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-        /* Estilos Visuais - TAB SOFTWARES & SKILLS (Sem Scroll) */
+        /* Estilos Visuais - TAB SOFTWARES & SKILLS */
         .tab-static-area { width: 100%; padding-right: 20px; }
         .sw-container { width: 100%; display: flex; flex-direction: column; gap: 30px; }
         
@@ -293,12 +369,12 @@
         .cv-item h4 { font-size: 1rem; font-weight: 500; color: #fff; margin-bottom: 2px; letter-spacing: 1px; }
         .cv-meta { display: flex; justify-content: flex-start; gap: 15px; font-size: 0.65rem; color: #c2b2a3; margin-bottom: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Animações de Entrada Globais - Ajustado para combinar com o translateX(-5vw) */
+        /* Animações de Entrada Globais */
         @keyframes contentFadeIn { 0% { opacity: 0; transform: translateX(25px); } 100% { opacity: 1; transform: translateX(-5vw); } }
         @keyframes fadeRight { 0% { opacity: 0; transform: translateY(-50%) translateX(-30px); } 100% { opacity: 1; transform: translateY(-50%) translateX(0); } }
 
-        /* --- SLIDE 6: REFERENCES --- */
-        .testi-container { width: 100%; height: 100%; position: relative; background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        /* --- SLIDE 6: REFERENCES (FUNDO SUBSTITUÍDO POR RENDER DO PORTFÓLIO) --- */
+        .testi-container { width: 100%; height: 100%; position: relative; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_14.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .testi-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 20, 0.85); z-index: 1; }
         .testi-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
@@ -307,12 +383,12 @@
         .t-logo-img { height: 80px; width: auto; max-width: 280px; object-fit: contain; opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease; cursor: default; filter: brightness(0) invert(1); }
         .t-logo-img:hover { opacity: 1; }
 
-        /* CARROSSEL DE DEPOIMENTOS (Ajustado para 3 cards a 80%) */
+        /* CARROSSEL DE DEPOIMENTOS (3 cards a 80%) */
         .testi-carousel { display: flex; align-items: center; gap: 40px; width: 100%; justify-content: center; position: relative; }
         .testi-window { width: 1400px; max-width: 95vw; overflow: hidden; padding: 20px 0 60px 0; }
         .testi-cards { display: flex; gap: 40px; transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }
         
-        /* CARDS (Diminuídos para 80%: de 550px para 440px) */
+        /* CARDS (440px) */
         .t-card { background-color: #fff; width: 440px; flex-shrink: 0; padding: 48px 40px 48px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; border-radius: 2px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
         .t-text { text-align: center; color: #777; font-size: 0.76rem; line-height: 1.9; font-weight: 300; margin-bottom: 32px; }
         .t-author { text-align: center; position: relative; z-index: 2; }
@@ -358,7 +434,7 @@
         .info-block.contact-number p { font-weight: 500; }
 
         /* =========================================================
-           A PRANCHA HORIZONTAL DE PROJETOS DETALHADOS (OVERLAY)
+           A PRANCHA HORIZONTAL DE PROJETOS DETALHADOS (COR CLARA ORIGINAL #F4F4F2)
            ========================================================= */
         #project-viewer {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -437,6 +513,22 @@
     </style>
 </head>
 <body>
+
+    <!-- TELA DE CARREGAMENTO INICIAL CIRCULAR (PRELOADER) -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-circle-wrap">
+                <div class="preloader-outer-halo"></div>
+                <svg class="preloader-svg" viewBox="0 0 140 140">
+                    <circle class="preloader-ring-bg" cx="70" cy="70" r="60"></circle>
+                    <circle class="preloader-ring-fill" id="preloaderRing" cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="preloader-counter" id="preloaderCounter">0%</div>
+            </div>
+            <div class="preloader-title">MARLON OLIVEIRA</div>
+            <div class="preloader-subtitle">Architecture &amp; Technical Design</div>
+        </div>
+    </div>
 
     <!-- ELEMENTOS DO CURSOR -->
     <div class="cursor-dot"></div>
@@ -569,21 +661,21 @@
                     <div class="grid-cell"></div> <div class="grid-cell"></div> 
                     <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/1.png" loading="eager" decoding="async"></div>
                     <div class="grid-cell"></div>
-                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/2.png" loading="lazy" decoding="async"></div>
+                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/2.png" loading="eager" decoding="async"></div>
                     <div class="grid-cell"></div>
 
                     <div class="grid-cell"></div>
                     <div class="grid-cell"></div>
-                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/3.png" loading="lazy" decoding="async"></div>
+                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/3.png" loading="eager" decoding="async"></div>
                     <div class="grid-cell"></div>
-                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/4.png" loading="lazy" decoding="async"></div>
+                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/4.png" loading="eager" decoding="async"></div>
                     <div class="grid-cell"></div>
 
                     <div class="grid-cell"></div>
                     <div class="grid-cell"></div>
-                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/6_1.png" loading="lazy" decoding="async"></div>
+                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/6_1.png" loading="eager" decoding="async"></div>
                     <div class="grid-cell"></div>
-                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/5_1.png" loading="lazy" decoding="async"></div>
+                    <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/5_1.png" loading="eager" decoding="async"></div>
                     <div class="grid-cell"></div>
 
                 </div>
@@ -692,7 +784,7 @@
                         </div>
                     </div>
 
-                    <!-- Tab: EXPERIENCE -->
+                    <!-- Tab: EXPERIENCE (CORRIGIDA E SEM BUGS DE POSIÇÃO) -->
                     <div id="tab-experience" class="about-tab">
                         <div class="tab-header" style="position: relative;">
                             EXPERIENCE <div class="tab-header-line"></div>
@@ -703,83 +795,81 @@
                         </div>
                         
                         <div class="timeline-viewport" id="experience-viewport">
-                            <div class="timeline-container">
+                            <div class="timeline-track" id="timeline-track">
                                 <div class="timeline-line"></div>
                                 
-                                <div class="timeline-track" id="timeline-track">
-                                    <div class="timeline-item active">
-                                        <div class="timeline-dot"></div>
-                                        <div class="tl-header">
-                                            <div class="tl-title">John Kesthel Architect</div>
-                                            <div class="tl-role">Architecture Draftsperson &nbsp;|&nbsp; 2025 - CURRENT</div>
-                                        </div>
-                                        <div class="tl-body">
-                                            <ul>
-                                                <li>Drafting of detailed 2D architectural plans, elevations, and sections for residential and commercial projects;</li>
-                                                <li>Ensuring all technical documentation complies with local building codes, industry standards, and project specifications;</li>
-                                            </ul>
-                                        </div>
+                                <div class="timeline-item active">
+                                    <div class="timeline-dot"></div>
+                                    <div class="tl-header">
+                                        <div class="tl-title">John Kesthel Architect</div>
+                                        <div class="tl-role">Architecture Draftsperson &nbsp;|&nbsp; 2025 - CURRENT</div>
                                     </div>
-
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="tl-header">
-                                            <div class="tl-title">IPS Design</div>
-                                            <div class="tl-role">Draftsperson and 3D modeling &nbsp;|&nbsp; FEB 2024 - CURRENT</div>
-                                        </div>
-                                        <div class="tl-body">
-                                            <ul>
-                                                <li>Elaboration of detailed graphic documentation, including diagrams, schematic drawings, and elevations;</li>
-                                                <li>Development of 3D models of equipment and systems, using specific software to build detailed presentation traffic optimization.</li>
-                                            </ul>
-                                        </div>
+                                    <div class="tl-body">
+                                        <ul>
+                                            <li>Drafting of detailed 2D architectural plans, elevations, and sections for residential and commercial projects;</li>
+                                            <li>Ensuring all technical documentation complies with local building codes, industry standards, and project specifications;</li>
+                                        </ul>
                                     </div>
+                                </div>
 
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="tl-header">
-                                            <div class="tl-title">APC Storage Technology</div>
-                                            <div class="tl-role">Engineering Draftsperson &nbsp;|&nbsp; AUG 2024 - SEPT 2024</div>
-                                        </div>
-                                        <div class="tl-body">
-                                            <ul>
-                                                <li>Developed comprehensive and precise technical drawings for engineering projects, ensuring adherence to industry standards and project specifications;</li>
-                                                <li>Produced detailed plans, sections, elevations, and construction details using CAD software, providing accurate visual support for engineering solutions;</li>
-                                            </ul>
-                                        </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="tl-header">
+                                        <div class="tl-title">IPS Design</div>
+                                        <div class="tl-role">Draftsperson and 3D modeling &nbsp;|&nbsp; FEB 2024 - CURRENT</div>
                                     </div>
-
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="tl-header">
-                                            <div class="tl-title">FPE Projetos</div>
-                                            <div class="tl-role">Architect and Urban Planner &nbsp;|&nbsp; 2021 - 2023</div>
-                                        </div>
-                                        <div class="tl-body">
-                                            <ul>
-                                                <li>Comprehensive development of Architecture, Interior Design, and Urban projects, operating across various sectors (Institutional, Healthcare and Residential);</li>
-                                                <li>Implementation of projects employing the Building Information Modeling (BIM) methodology;</li>
-                                                <li>Elaboration of detailed graphic documentation and preliminary cost estimates;</li>
-                                                <li>Development and design of Urban Furniture;</li>
-                                                <li>Joinery detailing;</li>
-                                                <li>3D modeling based on Point Cloud cadastral data;</li>
-                                                <li>Execution of Architectural Surveys;</li>
-                                                <li>Production of electronic maquettes with final outcomes presented through photorealistic images or rendered videos.</li>
-                                            </ul>
-                                        </div>
+                                    <div class="tl-body">
+                                        <ul>
+                                            <li>Elaboration of detailed graphic documentation, including diagrams, schematic drawings, and elevations;</li>
+                                            <li>Development of 3D models of equipment and systems, using specific software to build detailed presentation traffic optimization.</li>
+                                        </ul>
                                     </div>
+                                </div>
 
-                                    <div class="timeline-item">
-                                        <div class="timeline-dot"></div>
-                                        <div class="tl-header">
-                                            <div class="tl-title">Galpão 5</div>
-                                            <div class="tl-role">Practical Training - Arch and Landscaping &nbsp;|&nbsp; 2020</div>
-                                        </div>
-                                        <div class="tl-body">
-                                            <ul>
-                                                <li>Assistance in the development of landscaping projects covering a variety of creative forms, including the creation of vertical gardens, implementation of green roofs, and design of artificial lakes.</li>
-                                            </ul>
-                                        </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="tl-header">
+                                        <div class="tl-title">APC Storage Technology</div>
+                                        <div class="tl-role">Engineering Draftsperson &nbsp;|&nbsp; AUG 2024 - SEPT 2024</div>
+                                    </div>
+                                    <div class="tl-body">
+                                        <ul>
+                                            <li>Developed comprehensive and precise technical drawings for engineering projects, ensuring adherence to industry standards and project specifications;</li>
+                                            <li>Produced detailed plans, sections, elevations, and construction details using CAD software, providing accurate visual support for engineering solutions;</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="tl-header">
+                                        <div class="tl-title">FPE Projetos</div>
+                                        <div class="tl-role">Architect and Urban Planner &nbsp;|&nbsp; 2021 - 2023</div>
+                                    </div>
+                                    <div class="tl-body">
+                                        <ul>
+                                            <li>Comprehensive development of Architecture, Interior Design, and Urban projects, operating across various sectors (Institutional, Healthcare and Residential);</li>
+                                            <li>Implementation of projects employing the Building Information Modeling (BIM) methodology;</li>
+                                            <li>Elaboration of detailed graphic documentation and preliminary cost estimates;</li>
+                                            <li>Development and design of Urban Furniture;</li>
+                                            <li>Joinery detailing;</li>
+                                            <li>3D modeling based on Point Cloud cadastral data;</li>
+                                            <li>Execution of Architectural Surveys;</li>
+                                            <li>Production of electronic maquettes with final outcomes presented through photorealistic images or rendered videos.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="tl-header">
+                                        <div class="tl-title">Galpão 5</div>
+                                        <div class="tl-role">Practical Training - Arch and Landscaping &nbsp;|&nbsp; 2020</div>
+                                    </div>
+                                    <div class="tl-body">
+                                        <ul>
+                                            <li>Assistance in the development of landscaping projects covering a variety of creative forms, including the creation of vertical gardens, implementation of green roofs, and design of artificial lakes.</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -896,12 +986,12 @@
             </div>
         </section>
 
-        <!-- 7. CONTACT -->
+        <!-- 7. CONTACT (IMAGEM SUBSTITUÍDA POR RENDER DO PORTFÓLIO) -->
         <section class="section" id="contactSection" data-name="Contact" data-theme="dark" style="padding: 0;">
             <div class="contact-split-container">
                 <div class="contact-left"><div class="split-text split-bl">/ ARCHITECTURE<br>/ INTERIOR<br>/ 3D VISUALIZATION<br>/ DRAFTING<br>/ DETAILING</div></div>
                 <div class="contact-right">
-                    <div class="contact-bg-image" id="contactImage" style="background-image: url('https://www.thespruce.com/thmb/LbvaCj1uerYk78-tygbX-RFsBlc=/4256x0/filters:no_upscale():max_bytes(150000):strip_icc()/HoneycombHomeDesign-bfaca14402e74254b7335e42c5ee2139.jpg');"></div>
+                    <div class="contact-bg-image" id="contactImage" style="background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_6.png');"></div>
                 </div>
                 
                 <div class="split-bottom-full-container">
@@ -1023,39 +1113,76 @@
             });
             
             document.getElementById('tab-' + tabId).classList.add('active');
+            if (tabId === 'experience') {
+                setTimeout(updateTimeline, 50);
+            }
         }
 
-        // --- FUNÇÃO DA TIMELINE (SCROLL NATIVO SUAVE, SEM BURACOS) ---
+        // --- FUNÇÃO DA TIMELINE (ALTURA EXATA E SCROLL INTELIGENTE APENAS SE FALTAR ESPAÇO) ---
         let currentExpIndex = 0;
         function updateTimeline() {
             const items = document.querySelectorAll('.timeline-item');
-            const track = document.getElementById('timeline-track');
             const viewport = document.getElementById('experience-viewport');
-            
-            if (track) track.style.transform = 'none';
+            if (!items.length || !viewport) return;
+
+            let targetItemTop = 0;
+            let targetItemHeight = 0;
+            let totalTrackHeight = 10; // padding-bottom
 
             items.forEach((item, index) => {
+                const header = item.querySelector('.tl-header');
+                const body = item.querySelector('.tl-body');
+                const headerH = header ? header.offsetHeight : 42;
+                const bodyH = body ? body.scrollHeight : 0;
+                const marginB = (index === items.length - 1) ? 0 : 22;
+
                 if (index === currentExpIndex) {
                     item.classList.add('active');
+                    if (body) body.style.maxHeight = bodyH + 'px';
+                    targetItemTop = totalTrackHeight - 10;
+                    targetItemHeight = headerH + 14 + bodyH;
+                    totalTrackHeight += targetItemHeight + marginB;
                 } else {
                     item.classList.remove('active');
+                    if (body) body.style.maxHeight = '0px';
+                    totalTrackHeight += headerH + marginB;
                 }
-                
+
                 item.onclick = () => {
-                    currentExpIndex = index;
-                    updateTimeline();
+                    if (currentExpIndex !== index) {
+                        currentExpIndex = index;
+                        updateTimeline();
+                    }
                 };
             });
-            
-            setTimeout(() => {
-                if (items[currentExpIndex] && viewport) {
-                    viewport.scrollTo({
-                        top: items[currentExpIndex].offsetTop - 15,
-                        behavior: 'smooth'
-                    });
-                }
-            }, 150);
+
+            // Verifica matematicamente se precisa rolar (sem empurrar itens sem necessidade)
+            const viewH = viewport.clientHeight;
+            let currentScroll = viewport.scrollTop;
+            const maxPossibleScroll = Math.max(0, totalTrackHeight - viewH);
+
+            let desiredScroll = currentScroll;
+            const targetItemBottom = targetItemTop + targetItemHeight;
+
+            if (targetItemBottom > currentScroll + viewH) {
+                // Rola apenas o suficiente para mostrar o final do item aberto
+                desiredScroll = Math.min(targetItemTop, targetItemBottom - viewH + 12);
+            } else if (targetItemTop < currentScroll) {
+                // Rola apenas o suficiente se o título estiver acima da área visível
+                desiredScroll = targetItemTop;
+            }
+
+            // Garante que nunca sobre espaço vazio no final
+            desiredScroll = Math.max(0, Math.min(desiredScroll, maxPossibleScroll));
+
+            if (Math.abs(desiredScroll - currentScroll) > 2) {
+                viewport.scrollTo({
+                    top: desiredScroll,
+                    behavior: 'smooth'
+                });
+            }
         }
+
         function changeExp(direction) {
             const items = document.querySelectorAll('.timeline-item');
             currentExpIndex += direction;
@@ -1064,6 +1191,7 @@
             updateTimeline();
         }
         window.addEventListener('DOMContentLoaded', updateTimeline);
+        window.addEventListener('resize', updateTimeline);
 
         // --- CURSOR CUSTOMIZADO GLOBAL ---
         const cursorDot = document.querySelector('.cursor-dot');
@@ -1082,13 +1210,83 @@
         }
         updateCursor();
 
-        // --- BANCO DE DADOS DOS PROJETOS (ATUALIZADO COM OS NOVOS TÍTULOS E CAPAS DOS 5 PROJETOS) ---
+        // --- BANCO DE DADOS DOS PROJETOS (TODOS OS LINKS SUBSTITUÍDOS PELOS SEUS RENDERS) ---
         const projectsData = {
-            'pale-stone': { eyebrow: 'ARCHITECTURE', title: 'TAIRU TOWNHOUSE', giant: 'TOWNHOUSES', loc: 'PERTH, WA', coords: '31.9523° S<br>115.8613° E', desc1: 'A minimalist interior exploring the tactile qualities of pale stone. The structure serves as a contemplation space, utilizing geometric purity.', desc2: 'The layout is carefully organized to maximize panoramic views, inviting natural light deep into the living spaces. A seamless connection with nature.', desc3: 'Natural materials were selected to respect the pristine environment. Locally sourced pale stone, untreated wood, and exposed concrete work synchronously.', finEye: 'A PLACE', finTitle: 'TO BREATHE', imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)', imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)', imgMat1: 'url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200)', imgMat2: 'url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800)', imgGrid1: 'url(https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800)', imgGrid2: 'url(https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=800)', imgGrid3: 'url(https://images.unsplash.com/photo-1584907600850-2bc6e7102e3b?w=800)', imgFinale: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/3D_Perspective_3.png)' },
-            'natural-wood': { eyebrow: 'URBAN PLANNING', title: 'YOUTH SQUARE', giant: 'SQUARE', loc: 'EXMOUTH, WA', coords: '21.9312° S<br>114.1235° E', desc1: 'A residential project that embraces the warm aesthetic of natural wood. The clean geometric structures merge seamlessly with the environment.', desc2: 'Every architectural decision is guided by the desire to harmonize the built environment with nature. The structural planning allows for expansive wooden overhangs.', desc3: 'Locally sourced timber and meticulous joinery highlight the craftsmanship of this home. The natural finish of the wood acts as a living skin.', finEye: 'LIVING IN', finTitle: 'HARMONY', imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)', imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)', imgMat1: 'url(https://images.unsplash.com/photo-1502672260266-1c1c24240f38?w=1200)', imgMat2: 'url(https://images.unsplash.com/photo-1502672260266-1c1c24240f38?w=800)', imgGrid1: 'url(https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800)', imgGrid2: 'url(https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800)', imgGrid3: 'url(https://images.unsplash.com/photo-1600607686027-6cb264d085df?w=800)', imgFinale: 'url(https://images.unsplash.com/photo-1501183638710-841dd1904471?w=2000)' },
-            'clean-geo': { eyebrow: 'INTERIOR', title: 'THE FOUNTAIN HOUSE', giant: 'HOUSE', loc: 'KALBARRI, WA', coords: '27.7088° S<br>114.1648° E', desc1: 'A 3D visualization concept focusing on sharp geometry and spatial optimization. Pure shapes dictate the flow of the building.', desc2: 'The rigorous structural planning allows for vast open spaces. Technical drawing standards informed every alignment.', desc3: 'The finishes combine polished concrete with minimalist glass facades. The interplay between massive blocks and transparent voids forms the core narrative.', finEye: 'PURE', finTitle: 'FORM', imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)', imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)', imgMat1: 'url(https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200)', imgMat2: 'url(https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800)', imgGrid1: 'url(https://images.unsplash.com/photo-1449844908441-8829872d2607?w=800)', imgGrid2: 'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800)', imgGrid3: 'url(https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800)', imgFinale: 'url(https://images.unsplash.com/photo-1449844908441-8829872d2607?w=2000)' },
-            'structural': { eyebrow: 'URBAN PLANNING', title: 'FORMOSA AVENUE', giant: 'AVENUE', loc: 'SHARK BAY, WA', coords: '25.9328° S<br>113.5358° E', desc1: 'A deep dive into civil construction procedures. This project showcases the intersection of advanced engineering standards and aesthetic expression.', desc2: 'Through careful topographical analysis and execution of AS 1100 technical standards, the structure adapts perfectly to the uneven terrain.', desc3: 'Exposed steel beams and industrial joints are celebrated rather than hidden. Technical anti-corrosive treatments highlight the metallic textures.', finEye: 'THE ART OF', finTitle: 'ENGINEERING', imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_01.jpg)', imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_01.jpg)', imgMat1: 'url(https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=1200)', imgMat2: 'url(https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=800)', imgGrid1: 'url(https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800)', imgGrid2: 'url(https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800)', imgGrid3: 'url(https://images.unsplash.com/photo-1516156008625-3a9d6067faa5?w=800)', imgFinale: 'url(https://images.unsplash.com/photo-1536895058696-a69b1c7ba34d?w=2000)' },
-            'lighting': { eyebrow: 'ARCHITECTURE', title: 'CRCS', giant: 'CRCS', loc: 'PERTH CITY', coords: '31.9505° S<br>115.8605° E', desc1: 'A study in architectural rendering aesthetics, characterized by warm natural backlighting and its delicate interaction with interior surfaces.', desc2: 'Shadows are treated as a primary building material. The layout was specifically designed to capture the warm golden hour.', desc3: 'Soft textures and muted tones allow the lighting to take center stage. Matte architectural finishes were chosen over glossy surfaces.', finEye: 'CHASING', finTitle: 'THE LIGHT', imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_01.jpg)', imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_01.jpg)', imgMat1: 'url(https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200)', imgMat2: 'url(https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800)', imgGrid1: 'url(https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=800)', imgGrid2: 'url(https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800)', imgGrid3: 'url(https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800)', imgFinale: 'url(https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=2000)' }
+            'pale-stone': {
+                eyebrow: 'ARCHITECTURE', title: 'TAIRU TOWNHOUSE', giant: 'TOWNHOUSES', loc: 'PERTH, WA', coords: '31.9523° S<br>115.8613° E',
+                desc1: 'A minimalist interior exploring the tactile qualities of pale stone. The structure serves as a contemplation space, utilizing geometric purity.',
+                desc2: 'The layout is carefully organized to maximize panoramic views, inviting natural light deep into the living spaces. A seamless connection with nature.',
+                desc3: 'Natural materials were selected to respect the pristine environment. Locally sourced pale stone, untreated wood, and exposed concrete work synchronously.',
+                finEye: 'A PLACE', finTitle: 'TO BREATHE',
+                imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)',
+                imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)',
+                imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_1.png)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_2.jpg)',
+                imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_3.png)',
+                imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_4.png)',
+                imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_5.png)',
+                imgFinale: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_6.png)'
+            },
+            'natural-wood': {
+                eyebrow: 'URBAN PLANNING', title: 'YOUTH SQUARE', giant: 'SQUARE', loc: 'EXMOUTH, WA', coords: '21.9312° S<br>114.1235° E',
+                desc1: 'A residential project that embraces the warm aesthetic of natural wood. The clean geometric structures merge seamlessly with the environment.',
+                desc2: 'Every architectural decision is guided by the desire to harmonize the built environment with nature. The structural planning allows for expansive wooden overhangs.',
+                desc3: 'Locally sourced timber and meticulous joinery highlight the craftsmanship of this home. The natural finish of the wood acts as a living skin.',
+                finEye: 'LIVING IN', finTitle: 'HARMONY',
+                imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)',
+                imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)',
+                imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_7.png)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_8.png)',
+                imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_9.png)',
+                imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png)',
+                imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_11.png)',
+                imgFinale: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_12.png)'
+            },
+            'clean-geo': {
+                eyebrow: 'INTERIOR', title: 'THE FOUNTAIN HOUSE', giant: 'HOUSE', loc: 'KALBARRI, WA', coords: '27.7088° S<br>114.1648° E',
+                desc1: 'A 3D visualization concept focusing on sharp geometry and spatial optimization. Pure shapes dictate the flow of the building.',
+                desc2: 'The rigorous structural planning allows for vast open spaces. Technical drawing standards informed every alignment.',
+                desc3: 'The finishes combine polished concrete with minimalist glass facades. The interplay between massive blocks and transparent voids forms the core narrative.',
+                finEye: 'PURE', finTitle: 'FORM',
+                imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)',
+                imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)',
+                imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_13.png)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_14.png)',
+                imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_15.jpg)',
+                imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_16.jpg)',
+                imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_17.jpg)',
+                imgFinale: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_18.jpg)'
+            },
+            'structural': {
+                eyebrow: 'URBAN PLANNING', title: 'FORMOSA AVENUE', giant: 'AVENUE', loc: 'SHARK BAY, WA', coords: '25.9328° S<br>113.5358° E',
+                desc1: 'A deep dive into civil construction procedures. This project showcases the intersection of advanced engineering standards and aesthetic expression.',
+                desc2: 'Through careful topographical analysis and execution of AS 1100 technical standards, the structure adapts perfectly to the uneven terrain.',
+                desc3: 'Exposed steel beams and industrial joints are celebrated rather than hidden. Technical anti-corrosive treatments highlight the metallic textures.',
+                finEye: 'THE ART OF', finTitle: 'ENGINEERING',
+                imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_01.jpg)',
+                imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_01.jpg)',
+                imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_19.jpg)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_20.jpg)',
+                imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_1.png)',
+                imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_5.png)',
+                imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_8.png)',
+                imgFinale: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png)'
+            },
+            'lighting': {
+                eyebrow: 'ARCHITECTURE', title: 'CRCS', giant: 'CRCS', loc: 'PERTH CITY', coords: '31.9505° S<br>115.8605° E',
+                desc1: 'A study in architectural rendering aesthetics, characterized by warm natural backlighting and its delicate interaction with interior surfaces.',
+                desc2: 'Shadows are treated as a primary building material. The layout was specifically designed to capture the warm golden hour.',
+                desc3: 'Soft textures and muted tones allow the lighting to take center stage. Matte architectural finishes were chosen over glossy surfaces.',
+                finEye: 'CHASING', finTitle: 'THE LIGHT',
+                imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_01.jpg)',
+                imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_01.jpg)',
+                imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_11.png)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_12.png)',
+                imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_14.png)',
+                imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_15.jpg)',
+                imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_19.jpg)',
+                imgFinale: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_20.jpg)'
+            }
         };
 
         let isProjectOpen = false;
@@ -1251,7 +1449,6 @@
         const projectTitles = ["MODERN RESIDENCE", "COMMERCIAL PLAZA", "URBAN LANDSCAPE", "INTERIOR CONCEPT", "LIVING SPACE", "ARCHITECTURAL VISUALIZATION", "EXTERIOR FACADE", "MINIMALIST DESIGN"];
         const projectSubtitles = ["2024, Architecture, Australia", "2023, Commercial, Brazil", "2024, Urban Planning, USA", "2023, Interior Design, Italy", "2022, 3D Render, Japan", "2024, Concept, Canada"];
         
-        // Loop que preenche as 40 posições repetindo as 20 imagens intercaladas
         const galleryUrls = []; for(let i=0; i<40; i++) { galleryUrls.push(baseUrls[i % baseUrls.length]); }
         
         const galleryContainer = document.getElementById('renderGallery'); const infoOverlay = document.getElementById('projectInfoOverlay'); const infoTitle = document.getElementById('infoTitle'); const infoSubtitle = document.getElementById('infoSubtitle'); const close3DHint = document.getElementById('closeHint');
@@ -1318,6 +1515,86 @@
             };
         }
         window.addEventListener('load', applyAdaptiveContactColors);
+
+        // =========================================================
+        // LÓGICA DO PRELOADER CIRCULAR (CADENCIADO, SUAVE E ELEGANTE)
+        // =========================================================
+        (function initPreloader() {
+            const preloader = document.getElementById('preloader');
+            const ring = document.getElementById('preloaderRing');
+            const counter = document.getElementById('preloaderCounter');
+            const circumference = 2 * Math.PI * 60; // ~377
+
+            const urlsToLoad = new Set();
+
+            document.querySelectorAll('img').forEach(img => {
+                if (img.src) urlsToLoad.add(img.src);
+            });
+            document.querySelectorAll('[data-bg]').forEach(el => {
+                const bg = el.getAttribute('data-bg');
+                if (bg) urlsToLoad.add(bg);
+            });
+            baseUrls.forEach(url => urlsToLoad.add(url));
+            urlsToLoad.add('https://res.cloudinary.com/bd9lafhm/image/upload/f_auto,q_auto/Gemini_Generated_Image_hgkr97hgkr97hgkr');
+
+            const urlsArray = Array.from(urlsToLoad);
+            const total = urlsArray.length;
+            let loaded = 0;
+            let actualPercent = 0;
+            let visualPercent = 0;
+            let isFinished = false;
+
+            function onAssetProgress() {
+                loaded++;
+                actualPercent = Math.min(100, (loaded / total) * 100);
+            }
+
+            if (total === 0) {
+                actualPercent = 100;
+            } else {
+                urlsArray.forEach(url => {
+                    const img = new Image();
+                    img.onload = onAssetProgress;
+                    img.onerror = onAssetProgress;
+                    img.src = url;
+                });
+            }
+
+            // Trava de segurança: garante 100% após 7s caso alguma imagem oscile
+            setTimeout(() => { actualPercent = 100; }, 7000);
+
+            // Animação cadenciada e suave para o anel circular
+            function animateProgress() {
+                if (isFinished) return;
+
+                const diff = actualPercent - visualPercent;
+                if (diff > 0) {
+                    // Avança de forma suave e controlada (~3 a 3.5 segundos de duração mínima)
+                    const step = Math.max(0.18, Math.min(0.55, diff * 0.045));
+                    visualPercent = Math.min(actualPercent, visualPercent + step);
+                }
+
+                const rounded = Math.round(visualPercent);
+                if (counter) counter.textContent = rounded + '%';
+                if (ring) {
+                    const offset = circumference - (visualPercent / 100) * circumference;
+                    ring.style.strokeDashoffset = offset;
+                }
+
+                if (visualPercent >= 99.9 && actualPercent >= 100) {
+                    isFinished = true;
+                    if (counter) counter.textContent = '100%';
+                    if (ring) ring.style.strokeDashoffset = 0;
+                    setTimeout(() => {
+                        if (preloader) preloader.classList.add('loaded');
+                    }, 450);
+                } else {
+                    requestAnimationFrame(animateProgress);
+                }
+            }
+
+            requestAnimationFrame(animateProgress);
+        })();
     </script>
 </body>
 </html>
