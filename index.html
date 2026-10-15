@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Portfólio | Design Técnico e 3D</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +15,13 @@
     <style>
         /* --- RESET E ESTILOS GERAIS --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body, html { height: 100%; width: 100%; background-color: #1a1a1a; color: #f4f4f4; overflow: hidden; }
+        body, html { height: 100%; height: 100dvh; width: 100%; background-color: #1a1a1a; color: #f4f4f4; overflow: hidden; }
 
         /* =========================================================
            AVISO PARA GIRAR O CELULAR (APENAS MOBILE EM PÉ)
            ========================================================= */
         #rotate-device-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
             background-color: #080808; z-index: 20000;
             display: none; flex-direction: column; align-items: center; justify-content: center;
             padding: 30px; text-align: center; color: #f4f4f4;
@@ -53,7 +56,7 @@
            PRELOADER CIRCULAR COM INVERSÃO DE CORES (PRETO -> BRANCO)
            ========================================================= */
         #preloader {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
             background-color: rgb(8, 8, 8); z-index: 10000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             opacity: 1; visibility: visible;
@@ -162,7 +165,7 @@
         .right-sidebar.dark-mode .dot-item.active::after { background: #111; }
 
         /* --- EFEITO STACKING SLIDES --- */
-        .scroll-container { position: relative; height: 100vh; width: 100vw; overflow: hidden; transition: opacity 0.5s ease; }
+        .scroll-container { position: relative; height: 100vh; height: 100dvh; width: 100vw; overflow: hidden; transition: opacity 0.5s ease; }
         .section { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #1a1a1a; transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1); will-change: transform; }
         .section.slide-up { transform: translateY(-100%); box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
 
@@ -189,12 +192,12 @@
         .project-column:hover .project-number { transform: translate(-50%, -2vh); -webkit-text-stroke: 1px rgba(255,255,255,0.9); }
 
         /* --- SLIDE 3: O QUEBRA-CABEÇA DE CARTAS 3D --- */
-        .render-gallery { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(5, 1fr); width: 100vw; height: 100vh; background-color: #000; perspective: 2500px; }
+        .render-gallery { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(5, 1fr); width: 100vw; height: 100vh; height: 100dvh; background-color: #000; perspective: 2500px; }
         .gallery-item { width: 100%; height: 100%; position: relative; cursor: pointer; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease; }
         .render-gallery:not(.is-flipped) .gallery-item:hover { transform: scale(1.15); z-index: 10; box-shadow: 0 15px 30px rgba(0,0,0,0.8); }
         .gallery-item.flipped { transform: rotateY(180deg); }
         .front, .back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backface-visibility: hidden; background-size: cover; background-position: center; }
-        .back { transform: rotateY(180deg); background-size: 100vw 100vh; }
+        .back { transform: rotateY(180deg); background-size: 100vw 100vh; background-size: 100vw 100dvh; }
         .project-info-overlay { position: absolute; bottom: 8%; right: 8%; display: flex; flex-direction: row; align-items: stretch; z-index: 100; pointer-events: none; }
         .info-line-vertical { width: 2px; background: #fff; margin-right: 20px; transform: scaleY(0); transform-origin: top; transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1); }
         .project-info-overlay.active .info-line-vertical { transform: scaleY(1); }
@@ -209,22 +212,22 @@
         .close-hint.active { opacity: 1; transition-delay: 1.5s; pointer-events: auto; }
 
         /* --- SLIDE 4: TECHNICAL DOCUMENTATION --- */
-        .grid-viewport { width: 100vw; height: 100vh; position: relative; background-color: #111; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png'); background-size: cover; background-position: center; overflow: hidden; display: flex; }
+        .grid-viewport { width: 100vw; height: 100vh; height: 100dvh; position: relative; background-color: #111; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png'); background-size: cover; background-position: center; overflow: hidden; display: flex; }
         .grid-viewport::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1; pointer-events: none; }
-        .grid-track { display: grid; grid-template-columns: repeat(6, 33.333vw); grid-template-rows: 33.333vh 33.333vh 33.333vh; width: 200vw; height: 100vh; position: relative; z-index: 2; transition: transform 0.9s cubic-bezier(0.77, 0, 0.17, 1); mix-blend-mode: screen; }
+        .grid-track { display: grid; grid-template-columns: repeat(6, 33.333vw); grid-template-rows: repeat(3, 33.333%); width: 200vw; height: 100%; position: relative; z-index: 2; transition: transform 0.9s cubic-bezier(0.77, 0, 0.17, 1); mix-blend-mode: screen; }
         .grid-text-header { position: absolute; top: 55px; left: 55px; z-index: 20; color: #fff; pointer-events: none; opacity: 0; transform: translateY(15px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .section.is-active .grid-text-header { opacity: 1; transform: translateY(0); transition-delay: 2.2s; }
         .grid-text-header h3 { font-size: 1.1rem; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 5px; }
         .grid-text-header p { font-size: 0.85rem; color: #aaa; font-weight: 200; letter-spacing: 1px; }
         .line-h { position: absolute; height: 2px; background-color: rgba(255, 255, 255, 0.35); transform-origin: right center; transform: scaleX(0); transition: transform 1.5s cubic-bezier(0.65, 0, 0.05, 1); z-index: 5; pointer-events: none; }
-        .line-h:nth-of-type(1) { top: 33.333vh; left: 33.333vw; width: 166.667vw; transition-delay: 0s; }
-        .line-h:nth-of-type(2) { top: 66.666vh; left: 0; width: 200vw; transition-delay: 0.3s; }
+        .line-h:nth-of-type(1) { top: 33.333%; left: 33.333vw; width: 166.667vw; transition-delay: 0s; }
+        .line-h:nth-of-type(2) { top: 66.666%; left: 0; width: 200vw; transition-delay: 0.3s; }
         .line-v { position: absolute; width: 2px; background-color: rgba(255, 255, 255, 0.35); transform-origin: bottom center; transform: scaleY(0); transition: transform 1.5s cubic-bezier(0.65, 0, 0.05, 1); z-index: 5; pointer-events: none; }
-        .line-v:nth-of-type(3) { left: 33.333vw; top: 33.333vh; height: 66.667vh; transition-delay: 0.2s; }
-        .line-v:nth-of-type(4) { left: 66.666vw; top: 0; height: 100vh; transition-delay: 0.4s; }
-        .line-v:nth-of-type(5) { left: 100vw; top: 0; height: 100vh; transition-delay: 0.6s; }
-        .line-v:nth-of-type(6) { left: 133.333vw; top: 0; height: 100vh; transition-delay: 0.8s; }
-        .line-v:nth-of-type(7) { left: 166.666vw; top: 0; height: 100vh; transition-delay: 1.0s; }
+        .line-v:nth-of-type(3) { left: 33.333vw; top: 33.333%; height: 66.667%; transition-delay: 0.2s; }
+        .line-v:nth-of-type(4) { left: 66.666vw; top: 0; height: 100%; transition-delay: 0.4s; }
+        .line-v:nth-of-type(5) { left: 100vw; top: 0; height: 100%; transition-delay: 0.6s; }
+        .line-v:nth-of-type(6) { left: 133.333vw; top: 0; height: 100%; transition-delay: 0.8s; }
+        .line-v:nth-of-type(7) { left: 166.666vw; top: 0; height: 100%; transition-delay: 1.0s; }
         .section.is-active .line-h { transform: scaleX(1); }
         .section.is-active .line-v { transform: scaleY(1); }
         .grid-cell { position: relative; display: flex; align-items: center; justify-content: center; padding: 40px; cursor: pointer; }
@@ -267,11 +270,11 @@
         /* =========================================================
            SLIDE 5: ABOUT ME (FOTO À ESQUERDA + MENU + CONTEÚDO EDITORIAL)
            ========================================================= */
-        .about-container-v2 { width: 100vw; height: 100vh; position: relative; background-color: #050505; display: flex; overflow: hidden; }
+        .about-container-v2 { width: 100vw; height: 100vh; height: 100dvh; position: relative; background-color: #050505; display: flex; overflow: hidden; }
 
         /* 1. Imagem Esquerda */
         .about-left-image { 
-            width: 55vw; height: 100vh; position: relative; 
+            width: 55vw; height: 100vh; height: 100dvh; position: relative; 
             background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/f_auto,q_auto/Gemini_Generated_Image_hgkr97hgkr97hgkr'); 
             background-size: cover; 
             background-position: 80% 20%;
@@ -298,12 +301,12 @@
         .about-nav-item.active span { color: #c2b2a3; font-weight: 500; }
 
         /* 3. Área de Conteúdo */
-        .about-right-content { width: 45vw; height: 100vh; position: relative; z-index: 10; opacity: 0; pointer-events: none; transform: translateX(-5vw); }
+        .about-right-content { width: 45vw; height: 100vh; height: 100dvh; position: relative; z-index: 10; opacity: 0; pointer-events: none; transform: translateX(-5vw); }
         .section.is-active .about-right-content { animation: contentFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards; pointer-events: auto; }
         
         .about-tab { 
             position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); 
-            width: 30vw; max-height: 85vh; 
+            width: 30vw; max-height: 85vh; max-height: 85dvh; 
             opacity: 0; pointer-events: none; visibility: hidden;
             display: flex; flex-direction: column; align-items: flex-start; 
             transition: opacity 0.4s ease, visibility 0.4s ease; 
@@ -344,7 +347,7 @@
            ========================================================= */
         .timeline-viewport { 
             position: relative; width: 100%; margin-top: 5px; 
-            max-height: 55vh; 
+            max-height: 55vh; max-height: 55dvh; 
             overflow-y: auto; overscroll-behavior: contain;
             scrollbar-width: none; -ms-overflow-style: none;
         }
@@ -450,13 +453,13 @@
 
         /* --- SLIDE 7: CONTACT --- */
         #contactSection { --bg-color-adapt: #E6DED5; --text-color-adapt: #111; --card-bg-adapt: #111; --card-text-adapt: #fff; }
-        .contact-split-container { display: flex; flex-direction: row; width: 100vw; height: 100vh; position: relative; }
+        .contact-split-container { display: flex; flex-direction: row; width: 100vw; height: 100vh; height: 100dvh; position: relative; }
         .contact-left { width: 100vw; height: 100%; position: relative; background-color: var(--bg-color-adapt); transition: width 1.2s cubic-bezier(0.77, 0, 0.17, 1) 0.8s, background-color 1s ease; }
         .section.is-active .contact-left { width: 50vw; }
         .contact-right { width: 0vw; height: 100%; position: relative; overflow: hidden; transition: width 1.2s cubic-bezier(0.77, 0, 0.17, 1) 0.8s; }
         .section.is-active .contact-right { width: 50vw; }
-        .contact-bg-image { position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; background-size: cover; background-position: center; }
-        .contact-right::before { content: ''; position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; background: rgba(0,0,0,0.1); z-index: 1; }
+        .contact-bg-image { position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; height: 100dvh; background-size: cover; background-position: center; }
+        .contact-right::before { content: ''; position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; height: 100dvh; background: rgba(0,0,0,0.1); z-index: 1; }
         .split-text { position: absolute; font-size: 0.65rem; letter-spacing: 2px; font-weight: 500; text-transform: uppercase; line-height: 2; opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease, color 1s ease; z-index: 10; }
         .section.is-active .split-text { opacity: 1; transform: translateY(0); transition-delay: 1.8s; }
         .split-bl { bottom: 25px; left: 60px; color: var(--text-color-adapt); font-weight: 400; }
@@ -482,7 +485,7 @@
            A PRANCHA HORIZONTAL DE PROJETOS DETALHADOS (COR CLARA ORIGINAL #F4F4F2)
            ========================================================= */
         #project-viewer {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
             background-color: #F4F4F2; z-index: 2000;
             display: none; opacity: 0; transition: opacity 0.5s ease;
         }
@@ -490,8 +493,8 @@
         .close-btn:hover { opacity: 0.5; }
         .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        .fixed-bg { position: fixed; left: 0; top: 0; width: 66.6vw; height: 100vh; background-size: cover; background-position: center right; z-index: 0; }
-        .editorial-track { display: flex; height: 100vh; width: max-content; position: absolute; left: 0; top: 0; z-index: 1; will-change: transform; color: #222; }
+        .fixed-bg { position: fixed; left: 0; top: 0; width: 66.6vw; height: 100vh; height: 100dvh; background-size: cover; background-position: center right; z-index: 0; }
+        .editorial-track { display: flex; height: 100vh; height: 100dvh; width: max-content; position: absolute; left: 0; top: 0; z-index: 1; will-change: transform; color: #222; }
 
         .proj-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 6px; color: #999; text-transform: uppercase; margin-bottom: 10px; }
         .proj-title { font-size: 2.2vw; font-weight: 400; letter-spacing: 8px; color: #222; text-transform: uppercase; margin-bottom: 20px; line-height: 1.3; }
@@ -499,59 +502,59 @@
         .proj-paragraph { font-size: 0.75rem; line-height: 2.4; color: #777; font-weight: 400; text-align: justify; }
         .proj-text-large { width: 26vw; min-width: 300px; max-width: 420px; text-align: justify; font-size: 0.85rem; line-height: 2.2; color: #555; font-weight: 400; }
 
-        .panel-cover { position: relative; width: 100vw; height: 100vh; display: flex; flex-shrink: 0; }
-        .left-side-spacer { width: 66.6vw; height: 100vh; background: transparent; position: relative; }
+        .panel-cover { position: relative; width: 100vw; height: 100vh; height: 100dvh; display: flex; flex-shrink: 0; }
+        .left-side-spacer { width: 66.6vw; height: 100vh; height: 100dvh; background: transparent; position: relative; }
         .geometric-arc-1 { position: absolute; top: 10%; left: -10%; width: 40vw; height: 40vw; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; pointer-events: none; }
         .geometric-arc-2 { position: absolute; bottom: -15%; left: 10%; width: 35vw; height: 35vw; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; pointer-events: none; }
-        .right-side { width: 33.4vw; height: 100vh; position: relative; z-index: 5; background-color: #F4F4F2; } 
-        .text-block-cover { position: absolute; top: 28vh; left: 4vw; width: 22vw; }
+        .right-side { width: 33.4vw; height: 100vh; height: 100dvh; position: relative; z-index: 5; background-color: #F4F4F2; } 
+        .text-block-cover { position: absolute; top: 28%; left: 4vw; width: 22vw; }
         .giant-text { position: absolute; left: calc(66.6vw + 1px); bottom: 0; transform-origin: left bottom; transform: rotate(-90deg); font-family: 'Oswald', sans-serif; font-weight: 700; line-height: 0.75; letter-spacing: 2px; margin: 0; white-space: nowrap; color: #F4F4F2; pointer-events: none; z-index: 10; }
 
         .panel-map-image, .panel-blueprints, .panel-materials, .panel-grid-section { position: relative; flex-shrink: 0; background-color: #F4F4F2; z-index: 10; margin-left: -1px; }
 
-        .panel-map-image { width: 60vw; height: 100vh; }
-        .coord-block { position: absolute; top: 28vh; left: 18vw; text-align: left; }
+        .panel-map-image { width: 60vw; height: 100vh; height: 100dvh; }
+        .coord-block { position: absolute; top: 28%; left: 18vw; text-align: left; }
         .coord-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 6px; color: #999; margin-bottom: 12px; }
         .coord-data { font-size: 0.65rem; font-weight: 400; letter-spacing: 3px; color: #aaa; line-height: 2; }
-        .compass { position: absolute; bottom: 25vh; left: 24vw; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .compass { position: absolute; bottom: 25%; left: 24vw; display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .compass span { font-size: 0.65rem; font-weight: 500; color: #999; }
         .compass-circle { width: 30px; height: 30px; border: 1px solid #ccc; border-radius: 50%; display: flex; justify-content: center; position: relative; }
         .compass-line { width: 1px; height: 10px; background-color: #aaa; margin-top: 4px; }
-        .vertical-photo { position: absolute; top: 15vh; right: 5vw; width: 17vw; height: 70vh; background-size: cover; background-position: calc(50% + var(--prlx-slow)) center; }
+        .vertical-photo { position: absolute; top: 15%; right: 5vw; width: 17vw; height: 70%; background-size: cover; background-position: calc(50% + var(--prlx-slow)) center; }
 
-        .panel-blueprints { width: 110vw; height: 100vh; display: flex; align-items: center; }
-        .blueprints-left { width: 50vw; height: 80vh; padding-left: 5vw; display: flex; flex-direction: column; justify-content: space-between; }
+        .panel-blueprints { width: 110vw; height: 100vh; height: 100dvh; display: flex; align-items: center; }
+        .blueprints-left { width: 50vw; height: 80%; padding-left: 5vw; display: flex; flex-direction: column; justify-content: space-between; }
         .blueprint-wrapper { position: relative; width: 100%; height: 45%; display: flex; flex-direction: column; align-items: flex-start; }
         .blueprint-label { font-size: 0.55rem; font-weight: 600; letter-spacing: 4px; color: #999; text-transform: uppercase; margin-bottom: 2vh; }
         .blueprint-placeholder { width: 100%; height: 80%; background-color: rgba(0, 0, 0, 0.05); border: 2px dashed rgba(0, 0, 0, 0.25); opacity: 0.6; }
-        .blueprints-right { width: 60vw; height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding-top: 10vh; }
+        .blueprints-right { width: 60vw; height: 100%; display: flex; align-items: flex-start; justify-content: center; padding-top: 10%; }
 
-        .panel-materials { width: 110vw; height: 100vh; display: flex; align-items: center; overflow: hidden; }
-        .materials-img-area { width: 51vw; height: 100vh; position: relative; z-index: 1; will-change: transform; }
-        .mat-layer { position: absolute; background-size: 65vw 100vh; background-repeat: no-repeat; }
-        .mat-layer-orange { left: 8vw; bottom: 0; width: 43vw; height: 100vh; background-position: -8vw bottom; z-index: 1; }
+        .panel-materials { width: 110vw; height: 100vh; height: 100dvh; display: flex; align-items: center; overflow: hidden; }
+        .materials-img-area { width: 51vw; height: 100%; position: relative; z-index: 1; will-change: transform; }
+        .mat-layer { position: absolute; background-size: 65vw 100vh; background-size: 65vw 100dvh; background-repeat: no-repeat; }
+        .mat-layer-orange { left: 8vw; bottom: 0; width: 43vw; height: 100%; background-position: -8vw bottom; z-index: 1; }
         .mat-layer-orange::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 55%); mix-blend-mode: screen; pointer-events: none; }
-        .mat-layer-blue { left: 0; bottom: 0; width: 18vw; height: 85vh; background-position: 0 bottom; z-index: 2; }
+        .mat-layer-blue { left: 0; bottom: 0; width: 18vw; height: 85%; background-position: 0 bottom; z-index: 2; }
         .mat-layer-blue::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%); pointer-events: none; }
-        .materials-text-area { width: 59vw; height: 100vh; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 22.5vh; background-color: #F4F4F2; z-index: 5; }
+        .materials-text-area { width: 59vw; height: 100%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 22.5%; background-color: #F4F4F2; z-index: 5; }
 
-        .panel-grid-section { width: 90vw; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding-left: 0; gap: 6vw; padding-right: 20vw; }
-        .photo-masonry { width: 38vw; height: 55vh; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; z-index: 2; }
+        .panel-grid-section { width: 90vw; height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: flex-start; padding-left: 0; gap: 6vw; padding-right: 20vw; }
+        .photo-masonry { width: 38vw; height: 55%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; z-index: 2; }
         .grid-pic-wrap { overflow: hidden; position: relative; }
         .grid-pic { width: 100%; height: 100%; background-size: cover; background-position: calc(50% + var(--prlx-slow)) center; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; }
         .grid-pic-wrap:hover .grid-pic { transform: scale(1.08); }
-        .cross-section-area { position: relative; width: 32vw; height: 55vh; display: flex; flex-direction: column; justify-content: flex-end; }
+        .cross-section-area { position: relative; width: 32vw; height: 55%; display: flex; flex-direction: column; justify-content: flex-end; }
         .cross-section-placeholder { width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.05); border: 2px dashed rgba(0, 0, 0, 0.25); margin-bottom: 25px; z-index: 2; }
         .cross-section-label { display: flex; gap: 25px; align-items: flex-start; z-index: 2; }
         .label-num { font-size: 0.8rem; color: #999; font-weight: 500; }
         .label-text { font-size: 0.6rem; color: #888; font-weight: 600; letter-spacing: 5px; line-height: 1.8; text-transform: uppercase;}
 
-        .panel-finale { position: relative; flex-shrink: 0; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; z-index: 1; background-color: transparent; will-change: transform; margin-left: -1px; }
-        .finale-layer { position: absolute; background-size: 100vw 100vh; background-repeat: no-repeat; }
-        .finale-layer-back { left: 0; top: 0; width: 100vw; height: 100vh; z-index: 1; background-position: 0 0; }
-        .finale-layer-front { left: 0; top: 0; width: 30vw; height: 100vh; z-index: 2; background-position: 0 0; }
+        .panel-finale { position: relative; flex-shrink: 0; width: 100vw; height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: center; z-index: 1; background-color: transparent; will-change: transform; margin-left: -1px; }
+        .finale-layer { position: absolute; background-size: 100vw 100vh; background-size: 100vw 100dvh; background-repeat: no-repeat; }
+        .finale-layer-back { left: 0; top: 0; width: 100vw; height: 100%; z-index: 1; background-position: 0 0; }
+        .finale-layer-front { left: 0; top: 0; width: 30vw; height: 100%; z-index: 2; background-position: 0 0; }
         .finale-layer-front::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%); pointer-events: none; }
-        .finale-text-center { position: relative; z-index: 5; text-align: left; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.3); margin: 0; transform: translateY(-8vh); }
+        .finale-text-center { position: relative; z-index: 5; text-align: left; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.3); margin: 0; transform: translateY(-8%); }
         .finale-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; color: rgba(255,255,255,0.8); }
         .finale-title { font-family: 'Poppins', sans-serif; font-size: 3.5vw; font-weight: 200; letter-spacing: 12px; text-transform: uppercase; margin-bottom: 30px; }
         .finale-divider { width: 50px; height: 1px; background-color: #fff; margin: 0 0 35px 0; }
@@ -562,7 +565,7 @@
            ========================================================= */
         @media only screen and (max-height: 540px) and (orientation: landscape) {
             /* Topo e Barra Lateral */
-            .top-nav { padding: 14px 25px; }
+            .top-nav { padding: 12px 25px; }
             .logo { font-size: 1.05rem; letter-spacing: 1.5px; }
             .nav-right { font-size: 0.58rem; }
             .right-sidebar { right: 8px; gap: 10px; }
@@ -577,6 +580,7 @@
 
             /* Slide 2: Projetos */
             .project-column { padding: 0 12px; }
+            .project-info { margin-top: -6dvh; }
             .project-info .category { font-size: 0.5rem; letter-spacing: 2px; margin-bottom: 6px; }
             .project-info .title { font-size: 1.05rem; margin-bottom: 10px; }
 
@@ -586,59 +590,59 @@
             .close-hint { top: 16px; right: 40px; padding: 6px 14px; font-size: 0.52rem; }
 
             /* Slide 4: Documentação Técnica */
-            .grid-text-header { top: 22px; left: 25px; }
+            .grid-text-header { top: 20px; left: 25px; }
             .grid-text-header h3 { font-size: 0.72rem; letter-spacing: 3px; }
             .grid-text-header p { font-size: 0.55rem; }
-            .grid-cell { padding: 14px; }
-            .grid-nav-controls { bottom: 16px; right: 25px; gap: 10px; }
+            .grid-cell { padding: 12px; }
+            .grid-nav-controls { bottom: 14px; right: 25px; gap: 10px; }
             .grid-arr { width: 32px; height: 32px; }
             .close-grid-hint { top: 45px; right: 25px; padding: 6px 14px; font-size: 0.52rem; }
 
             /* Slide 5: About Me (Escala proporcional preservando todo o layout) */
-            .about-side-menu { left: 16px; gap: 16px; }
+            .about-side-menu { left: 16px; gap: 14px; }
             .about-nav-item { gap: 10px; height: 14px; }
             .about-nav-item span { font-size: 0.45rem; letter-spacing: 1.5px; }
             .nav-ring { width: 16px; height: 16px; }
             .about-tab {
-                transform: translate(-50%, -50%) scale(0.62);
-                width: 46vw; max-height: 135vh;
+                transform: translate(-50%, -50%) scale(0.58);
+                width: 48vw; max-height: 145dvh;
             }
-            .timeline-viewport { max-height: 75vh; }
+            .timeline-viewport { max-height: 75dvh; }
 
             /* Slide 6: References (Mantém exatamente os 3 cards e logos em escala) */
             .testi-content {
-                transform: scale(0.5);
+                transform: scale(0.46);
                 transform-origin: center center;
             }
             .testi-chevron-left { left: 18px; width: 18px; height: 18px; border-width: 3px; }
             .testi-chevron-right { right: 18px; width: 18px; height: 18px; border-width: 3px; }
 
             /* Slide 7: Contact */
-            .split-bl { bottom: 12px; left: 25px; font-size: 0.45rem; line-height: 1.7; }
+            .split-bl { bottom: 10px; left: 25px; font-size: 0.42rem; line-height: 1.65; }
             .contact-center-card {
-                transform: translate(-50%, -50%) scale(0.58);
+                transform: translate(-50%, -50%) scale(0.54);
             }
             .split-bottom-full-container {
-                bottom: 6px;
-                transform: translateX(-50%) scale(0.58);
+                bottom: 8px;
+                transform: translateX(-50%) scale(0.54);
                 transform-origin: bottom center;
             }
 
             /* Prancha Horizontal Interna dos Projetos */
-            .text-block-cover { top: 18vh; width: 25vw; }
+            .text-block-cover { top: 18%; width: 25vw; }
             .proj-eyebrow { font-size: 0.45rem; letter-spacing: 3px; margin-bottom: 5px; }
             .proj-title { font-size: 1.8vw; letter-spacing: 4px; margin-bottom: 10px; }
             .proj-divider { width: 25px; margin-bottom: 14px; }
             .proj-paragraph { font-size: 0.5rem; line-height: 1.85; }
             .proj-text-large { font-size: 0.55rem; line-height: 1.85; min-width: 200px; width: 28vw; }
-            .coord-block { top: 22vh; }
+            .coord-block { top: 22%; }
             .coord-title { font-size: 0.52rem; letter-spacing: 4px; margin-bottom: 6px; }
             .coord-data { font-size: 0.48rem; line-height: 1.7; }
-            .compass { bottom: 18vh; }
+            .compass { bottom: 18%; }
             .blueprint-label { font-size: 0.42rem; }
             .label-num { font-size: 0.58rem; }
             .label-text { font-size: 0.42rem; letter-spacing: 3px; }
-            .close-btn { top: 4vh; right: 3vw; font-size: 0.5rem; }
+            .close-btn { top: 4%; right: 3vw; font-size: 0.5rem; }
         }
     </style>
 </head>
@@ -792,13 +796,13 @@
                         <p>Floor Plans & Elevations</p>
                     </div>
 
-                    <div class="line-h" style="top: 33.333vh; left: 33.333vw; width: 166.667vw; transition-delay: 0s;"></div>
-                    <div class="line-h" style="top: 66.666vh; left: 0; width: 200vw; transition-delay: 0.3s;"></div>
-                    <div class="line-v" style="left: 33.333vw; top: 33.333vh; height: 66.667vh; transition-delay: 0.2s;"></div>
-                    <div class="line-v" style="left: 66.666vw; top: 0; height: 100vh; transition-delay: 0.4s;"></div>
-                    <div class="line-v" style="left: 100vw; top: 0; height: 100vh; transition-delay: 0.6s;"></div>
-                    <div class="line-v" style="left: 133.333vw; top: 0; height: 100vh; transition-delay: 0.8s;"></div>
-                    <div class="line-v" style="left: 166.666vw; top: 0; height: 100vh; transition-delay: 1.0s;"></div>
+                    <div class="line-h" style="top: 33.333%; left: 33.333vw; width: 166.667vw; transition-delay: 0s;"></div>
+                    <div class="line-h" style="top: 66.666%; left: 0; width: 200vw; transition-delay: 0.3s;"></div>
+                    <div class="line-v" style="left: 33.333vw; top: 33.333%; height: 66.667%; transition-delay: 0.2s;"></div>
+                    <div class="line-v" style="left: 66.666vw; top: 0; height: 100%; transition-delay: 0.4s;"></div>
+                    <div class="line-v" style="left: 100vw; top: 0; height: 100%; transition-delay: 0.6s;"></div>
+                    <div class="line-v" style="left: 133.333vw; top: 0; height: 100%; transition-delay: 0.8s;"></div>
+                    <div class="line-v" style="left: 166.666vw; top: 0; height: 100%; transition-delay: 1.0s;"></div>
                     
                     <div class="grid-cell"></div> <div class="grid-cell"></div> 
                     <div class="grid-cell"><div class="cell-overlay"></div><img class="grid-plant" src="https://res.cloudinary.com/bd9lafhm/image/upload/1.png" loading="eager" decoding="async"></div>
@@ -1237,6 +1241,23 @@
 
     <!-- SCRIPTS -->
     <script>
+        // --- MODO TELA CHEIA AUTOMÁTICO NO PRIMEIRO TOQUE (APENAS CELULAR NA HORIZONTAL) ---
+        function tryMobileFullscreen() {
+            const isMobileLandscape = window.matchMedia("(max-height: 540px) and (orientation: landscape) and (pointer: coarse)").matches;
+            if (!isMobileLandscape) return;
+            const docEl = document.documentElement;
+            const isFull = document.fullscreenElement || document.webkitFullscreenElement;
+            if (!isFull) {
+                if (docEl.requestFullscreen) {
+                    docEl.requestFullscreen().catch(() => {});
+                } else if (docEl.webkitRequestFullscreen) {
+                    docEl.webkitRequestFullscreen();
+                }
+            }
+        }
+        window.addEventListener('touchend', tryMobileFullscreen, { passive: true });
+        window.addEventListener('click', tryMobileFullscreen, { passive: true });
+
         // --- BLINDAGEM DO SCROLL (Impede que rolar nos textos mude de slide) ---
         const scrollAreas = document.querySelectorAll('.tab-scroll-area, .timeline-viewport');
         scrollAreas.forEach(area => {
