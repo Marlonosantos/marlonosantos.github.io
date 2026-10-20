@@ -96,7 +96,7 @@
         .preloader-ring-fill {
             fill: none; stroke: rgb(245, 245, 245); stroke-width: 1.8;
             stroke-linecap: round;
-            stroke-dasharray: 377; /* 2 * PI * 60 */
+            stroke-dasharray: 377;
             stroke-dashoffset: 377;
         }
         .preloader-counter {
@@ -175,7 +175,7 @@
         .home-content h1 { font-size: 4rem; letter-spacing: 4px; }
 
         /* --- SLIDE 2: COLUNAS DE PROJETOS --- */
-        #slide2Bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: background-image 0.6s ease-in-out; z-index: 0; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg'); }
+        #slide2Bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; transition: background-image 0.6s ease-in-out; z-index: 0; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg'); }
         .project-columns { display: flex; width: 100%; height: 100%; position: relative; z-index: 1; }
         .project-column { flex: 1; position: relative; border-right: 1px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; justify-content: center; padding: 0 40px; cursor: pointer; overflow: hidden; }
         .project-column:last-child { border-right: none; }
@@ -196,8 +196,9 @@
         .gallery-item { width: 100%; height: 100%; position: relative; cursor: pointer; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease; }
         .render-gallery:not(.is-flipped) .gallery-item:hover { transform: scale(1.15); z-index: 10; box-shadow: 0 15px 30px rgba(0,0,0,0.8); }
         .gallery-item.flipped { transform: rotateY(180deg); }
-        .front, .back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backface-visibility: hidden; background-size: cover; background-position: center; }
-        .back { transform: rotateY(180deg); background-size: 100vw 100vh; background-size: 100vw 100dvh; }
+        .front, .back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; backface-visibility: hidden; background-repeat: no-repeat; }
+        .front { background-size: cover; background-position: center; }
+        .back { transform: rotateY(180deg); }
         .project-info-overlay { position: absolute; bottom: 8%; right: 8%; display: flex; flex-direction: row; align-items: stretch; z-index: 100; pointer-events: none; }
         .info-line-vertical { width: 2px; background: #fff; margin-right: 20px; transform: scaleY(0); transform-origin: top; transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1); }
         .project-info-overlay.active .info-line-vertical { transform: scaleY(1); }
@@ -212,7 +213,7 @@
         .close-hint.active { opacity: 1; transition-delay: 1.5s; pointer-events: auto; }
 
         /* --- SLIDE 4: TECHNICAL DOCUMENTATION --- */
-        .grid-viewport { width: 100vw; height: 100vh; height: 100dvh; position: relative; background-color: #111; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png'); background-size: cover; background-position: center; overflow: hidden; display: flex; }
+        .grid-viewport { width: 100vw; height: 100vh; height: 100dvh; position: relative; background-color: #111; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png'); background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; display: flex; }
         .grid-viewport::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1; pointer-events: none; }
         .grid-track { display: grid; grid-template-columns: repeat(6, 33.333vw); grid-template-rows: repeat(3, 33.333%); width: 200vw; height: 100%; position: relative; z-index: 2; transition: transform 0.9s cubic-bezier(0.77, 0, 0.17, 1); mix-blend-mode: screen; }
         .grid-text-header { position: absolute; top: 55px; left: 55px; z-index: 20; color: #fff; pointer-events: none; opacity: 0; transform: translateY(15px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -268,11 +269,10 @@
         .grid-viewport.viewer-open .grid-nav-controls { opacity: 0 !important; pointer-events: none; transition: opacity 0.4s ease !important; }
 
         /* =========================================================
-           SLIDE 5: ABOUT ME (FOTO À ESQUERDA + MENU + CONTEÚDO EDITORIAL)
+           SLIDE 5: ABOUT ME (100% INTOCADO)
            ========================================================= */
         .about-container-v2 { width: 100vw; height: 100vh; height: 100dvh; position: relative; background-color: #050505; display: flex; overflow: hidden; }
 
-        /* 1. Imagem Esquerda */
         .about-left-image { 
             width: 55vw; height: 100vh; height: 100dvh; position: relative; 
             background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/f_auto,q_auto/Gemini_Generated_Image_hgkr97hgkr97hgkr'); 
@@ -285,7 +285,6 @@
         .section.is-active .about-left-image { opacity: 1; transform: translateX(0); }
         .about-image-shadow { position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: linear-gradient(to right, transparent, #050505); }
 
-        /* 2. Menu Lateral */
         .about-side-menu { position: absolute; left: 40px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 35px; z-index: 20; opacity: 0; pointer-events: none; }
         .section.is-active .about-side-menu { animation: fadeRight 1s ease 2.2s forwards; pointer-events: auto; }
         .menu-line { position: absolute; left: 5px; top: 10px; bottom: 10px; width: 1px; background: rgba(255,255,255,0.15); z-index: 1; }
@@ -300,7 +299,6 @@
         .about-nav-item.active .nav-ring { border-color: #c2b2a3; }
         .about-nav-item.active span { color: #c2b2a3; font-weight: 500; }
 
-        /* 3. Área de Conteúdo */
         .about-right-content { width: 45vw; height: 100vh; height: 100dvh; position: relative; z-index: 10; opacity: 0; pointer-events: none; transform: translateX(-5vw); }
         .section.is-active .about-right-content { animation: contentFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards; pointer-events: auto; }
         
@@ -316,11 +314,9 @@
             transition: opacity 0.6s ease 0.4s, visibility 0.6s ease 0.4s; 
         }
 
-        /* Estilos Visuais - HEADERS DOS TÓPICOS COM FADE-OUT GRADIENTE */
         .tab-header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; font-size: 0.85rem; letter-spacing: 5px; color: #fff; text-transform: uppercase; width: 100%; flex-shrink: 0; }
         .tab-header-line { flex-grow: 1; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 100%); max-width: 150px; }
 
-        /* Estilos Visuais - TAB HOME */
         .intro-eyebrow { font-size: 0.6rem; letter-spacing: 4px; color: #aaa; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; width: 100%; }
         .intro-eyebrow-line { flex-grow: 1; height: 1px; background: linear-gradient(to right, rgba(255,255,255,0.3) 0%, transparent 100%); max-width: 150px; }
         
@@ -335,7 +331,6 @@
         
         .bg-circle-faint { position: absolute; right: -10vw; top: 20vh; width: 40vw; height: 40vw; border: 1px solid rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none; z-index: 0; }
         
-        /* Oculta TODAS as Scrollbars Nativas nas Abas */
         .tab-scroll-area { 
             flex-grow: 1; width: 100%; overscroll-behavior: contain;
             scrollbar-width: none; -ms-overflow-style: none; 
@@ -343,7 +338,7 @@
         .tab-scroll-area::-webkit-scrollbar { display: none; }
 
         /* =========================================================
-           TAB EXPERIENCE (CORRIGIDA E ESTABILIZADA)
+           TAB EXPERIENCE
            ========================================================= */
         .timeline-viewport { 
             position: relative; width: 100%; margin-top: 5px; 
@@ -392,12 +387,10 @@
         .tl-body li:last-child { margin-bottom: 0; }
         .tl-body li::before { content: '•'; position: absolute; left: 0; color: #555; }
 
-        /* Controles da Timeline (Setinhas) */
         .exp-controls { display: flex; gap: 10px; z-index: 10; margin-left: auto; }
         .btn-tl { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
         .btn-tl:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-        /* Estilos Visuais - TAB SOFTWARES & SKILLS */
         .tab-static-area { width: 100%; padding-right: 20px; }
         .sw-container { width: 100%; display: flex; flex-direction: column; gap: 30px; }
         
@@ -411,32 +404,27 @@
         .skill-pill { border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 6px 15px; font-size: 0.6rem; color: #999; letter-spacing: 1px; transition: all 0.3s; cursor: default; }
         .skill-pill:hover { border-color: #c2b2a3; color: #fff; }
 
-        /* Estilos Visuais Genéricos para as outras Tabs */
         .tab-paragraph { font-size: 0.8rem; line-height: 1.8; color: #999; text-align: justify; margin-bottom: 15px; font-weight: 300; }
         .cv-item { margin-bottom: 20px; text-align: left; width: 100%; }
         .cv-item h4 { font-size: 1rem; font-weight: 500; color: #fff; margin-bottom: 2px; letter-spacing: 1px; }
         .cv-meta { display: flex; justify-content: flex-start; gap: 15px; font-size: 0.65rem; color: #c2b2a3; margin-bottom: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Animações de Entrada Globais */
         @keyframes contentFadeIn { 0% { opacity: 0; transform: translateX(25px); } 100% { opacity: 1; transform: translateX(-5vw); } }
         @keyframes fadeRight { 0% { opacity: 0; transform: translateY(-50%) translateX(-30px); } 100% { opacity: 1; transform: translateY(-50%) translateX(0); } }
 
         /* --- SLIDE 6: REFERENCES --- */
-        .testi-container { width: 100%; height: 100%; position: relative; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_14.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .testi-container { width: 100%; height: 100%; position: relative; background-image: url('https://res.cloudinary.com/bd9lafhm/image/upload/Render_14.png'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .testi-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 20, 0.85); z-index: 1; }
         .testi-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
-        /* LOGOS DAS EMPRESAS (Aumentadas 2x, altura de 80px) */
         .testi-logos { display: flex; align-items: center; justify-content: center; gap: 60px; margin-bottom: 60px; flex-wrap: wrap; }
         .t-logo-img { height: 80px; width: auto; max-width: 280px; object-fit: contain; opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease; cursor: default; filter: brightness(0) invert(1); }
         .t-logo-img:hover { opacity: 1; }
 
-        /* CARROSSEL DE DEPOIMENTOS (3 cards a 80%) */
         .testi-carousel { display: flex; align-items: center; gap: 40px; width: 100%; justify-content: center; position: relative; }
         .testi-window { width: 1400px; max-width: 95vw; overflow: hidden; padding: 20px 0 60px 0; }
         .testi-cards { display: flex; gap: 40px; transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1); }
         
-        /* CARDS (440px) */
         .t-card { background-color: #fff; width: 440px; flex-shrink: 0; padding: 48px 40px 48px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; border-radius: 2px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
         .t-text { text-align: center; color: #777; font-size: 0.76rem; line-height: 1.9; font-weight: 300; margin-bottom: 32px; }
         .t-author { text-align: center; position: relative; z-index: 2; }
@@ -458,7 +446,7 @@
         .section.is-active .contact-left { width: 50vw; }
         .contact-right { width: 0vw; height: 100%; position: relative; overflow: hidden; transition: width 1.2s cubic-bezier(0.77, 0, 0.17, 1) 0.8s; }
         .section.is-active .contact-right { width: 50vw; }
-        .contact-bg-image { position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; height: 100dvh; background-size: cover; background-position: center; }
+        .contact-bg-image { position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; height: 100dvh; background-size: cover; background-position: center; background-repeat: no-repeat; }
         .contact-right::before { content: ''; position: absolute; top: 0; left: 0; width: 50vw; height: 100vh; height: 100dvh; background: rgba(0,0,0,0.1); z-index: 1; }
         .split-text { position: absolute; font-size: 0.65rem; letter-spacing: 2px; font-weight: 500; text-transform: uppercase; line-height: 2; opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease, color 1s ease; z-index: 10; }
         .section.is-active .split-text { opacity: 1; transform: translateY(0); transition-delay: 1.8s; }
@@ -493,7 +481,7 @@
         .close-btn:hover { opacity: 0.5; }
         .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: opacity, transform; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        .fixed-bg { position: fixed; left: 0; top: 0; width: 66.6vw; height: 100vh; height: 100dvh; background-size: cover; background-position: center right; z-index: 0; }
+        .fixed-bg { position: fixed; left: 0; top: 0; width: 66.6vw; height: 100vh; height: 100dvh; background-size: cover; background-position: center right; background-repeat: no-repeat; z-index: 0; }
         .editorial-track { display: flex; height: 100vh; height: 100dvh; width: max-content; position: absolute; left: 0; top: 0; z-index: 1; will-change: transform; color: #222; }
 
         .proj-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 6px; color: #999; text-transform: uppercase; margin-bottom: 10px; }
@@ -520,7 +508,7 @@
         .compass span { font-size: 0.65rem; font-weight: 500; color: #999; }
         .compass-circle { width: 30px; height: 30px; border: 1px solid #ccc; border-radius: 50%; display: flex; justify-content: center; position: relative; }
         .compass-line { width: 1px; height: 10px; background-color: #aaa; margin-top: 4px; }
-        .vertical-photo { position: absolute; top: 15%; right: 5vw; width: 17vw; height: 70%; background-size: cover; background-position: calc(50% + var(--prlx-slow)) center; }
+        .vertical-photo { position: absolute; top: 15%; right: 5vw; width: 17vw; height: 70%; background-repeat: no-repeat; background-position: center; overflow: hidden; }
 
         .panel-blueprints { width: 110vw; height: 100vh; height: 100dvh; display: flex; align-items: center; }
         .blueprints-left { width: 50vw; height: 80%; padding-left: 5vw; display: flex; flex-direction: column; justify-content: space-between; }
@@ -529,19 +517,20 @@
         .blueprint-placeholder { width: 100%; height: 80%; background-color: rgba(0, 0, 0, 0.05); border: 2px dashed rgba(0, 0, 0, 0.25); opacity: 0.6; }
         .blueprints-right { width: 60vw; height: 100%; display: flex; align-items: flex-start; justify-content: center; padding-top: 10%; }
 
+        /* --- PAINEL DUPLO DE MATERIAIS (ALINHADO COMO 1 ÚNICA IMAGEM SEM ESTICAR) --- */
         .panel-materials { width: 110vw; height: 100vh; height: 100dvh; display: flex; align-items: center; overflow: hidden; }
         .materials-img-area { width: 51vw; height: 100%; position: relative; z-index: 1; will-change: transform; }
-        .mat-layer { position: absolute; background-size: 65vw 100vh; background-size: 65vw 100dvh; background-repeat: no-repeat; }
-        .mat-layer-orange { left: 8vw; bottom: 0; width: 43vw; height: 100%; background-position: -8vw bottom; z-index: 1; }
+        .mat-layer { position: absolute; background-repeat: no-repeat; }
+        .mat-layer-orange { left: 8vw; bottom: 0; width: 43vw; height: 100%; z-index: 1; }
         .mat-layer-orange::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 55%); mix-blend-mode: screen; pointer-events: none; }
-        .mat-layer-blue { left: 0; bottom: 0; width: 18vw; height: 85%; background-position: 0 bottom; z-index: 2; }
+        .mat-layer-blue { left: 0; bottom: 0; width: 18vw; height: 85%; z-index: 2; }
         .mat-layer-blue::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%); pointer-events: none; }
         .materials-text-area { width: 59vw; height: 100%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 22.5%; background-color: #F4F4F2; z-index: 5; }
 
         .panel-grid-section { width: 90vw; height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: flex-start; padding-left: 0; gap: 6vw; padding-right: 20vw; }
         .photo-masonry { width: 38vw; height: 55%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; z-index: 2; }
         .grid-pic-wrap { overflow: hidden; position: relative; }
-        .grid-pic { width: 100%; height: 100%; background-size: cover; background-position: calc(50% + var(--prlx-slow)) center; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; }
+        .grid-pic { width: 100%; height: 100%; background-repeat: no-repeat; background-position: center; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: pointer; }
         .grid-pic-wrap:hover .grid-pic { transform: scale(1.08); }
         .cross-section-area { position: relative; width: 32vw; height: 55%; display: flex; flex-direction: column; justify-content: flex-end; }
         .cross-section-placeholder { width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.05); border: 2px dashed rgba(0, 0, 0, 0.25); margin-bottom: 25px; z-index: 2; }
@@ -549,10 +538,11 @@
         .label-num { font-size: 0.8rem; color: #999; font-weight: 500; }
         .label-text { font-size: 0.6rem; color: #888; font-weight: 600; letter-spacing: 5px; line-height: 1.8; text-transform: uppercase;}
 
+        /* --- PAINEL FINALE (ALINHADO COMO 1 ÚNICA IMAGEM SEM ESTICAR) --- */
         .panel-finale { position: relative; flex-shrink: 0; width: 100vw; height: 100vh; height: 100dvh; display: flex; align-items: center; justify-content: center; z-index: 1; background-color: transparent; will-change: transform; margin-left: -1px; }
-        .finale-layer { position: absolute; background-size: 100vw 100vh; background-size: 100vw 100dvh; background-repeat: no-repeat; }
-        .finale-layer-back { left: 0; top: 0; width: 100vw; height: 100%; z-index: 1; background-position: 0 0; }
-        .finale-layer-front { left: 0; top: 0; width: 30vw; height: 100%; z-index: 2; background-position: 0 0; }
+        .finale-layer { position: absolute; background-repeat: no-repeat; }
+        .finale-layer-back { left: 0; top: 0; width: 100vw; height: 100%; z-index: 1; }
+        .finale-layer-front { left: 0; top: 0; width: 30vw; height: 100%; z-index: 2; }
         .finale-layer-front::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 60%); pointer-events: none; }
         .finale-text-center { position: relative; z-index: 5; text-align: left; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.3); margin: 0; transform: translateY(-8%); }
         .finale-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; color: rgba(255,255,255,0.8); }
@@ -564,7 +554,6 @@
            Não afeta monitores de computador
            ========================================================= */
         @media only screen and (max-height: 540px) and (orientation: landscape) {
-            /* Topo e Barra Lateral */
             .top-nav { padding: 12px 25px; }
             .logo { font-size: 1.05rem; letter-spacing: 1.5px; }
             .nav-right { font-size: 0.58rem; }
@@ -574,22 +563,18 @@
             .dot-item { width: 12px; height: 12px; }
             .dot-item::after { width: 4px; height: 4px; }
 
-            /* Slide 1: Home */
             .home-content h1 { font-size: 2.1rem; letter-spacing: 3px; }
             .home-content p { font-size: 0.65rem; }
 
-            /* Slide 2: Projetos */
             .project-column { padding: 0 12px; }
             .project-info { margin-top: -6dvh; }
             .project-info .category { font-size: 0.5rem; letter-spacing: 2px; margin-bottom: 6px; }
             .project-info .title { font-size: 1.05rem; margin-bottom: 10px; }
 
-            /* Slide 3: Galeria 3D */
             .info-title { font-size: 0.9rem; letter-spacing: 2px; }
             .info-subtitle { font-size: 0.6rem; }
             .close-hint { top: 16px; right: 40px; padding: 6px 14px; font-size: 0.52rem; }
 
-            /* Slide 4: Documentação Técnica */
             .grid-text-header { top: 20px; left: 25px; }
             .grid-text-header h3 { font-size: 0.72rem; letter-spacing: 3px; }
             .grid-text-header p { font-size: 0.55rem; }
@@ -598,7 +583,6 @@
             .grid-arr { width: 32px; height: 32px; }
             .close-grid-hint { top: 45px; right: 25px; padding: 6px 14px; font-size: 0.52rem; }
 
-            /* Slide 5: About Me (Escala proporcional preservando todo o layout) */
             .about-side-menu { left: 16px; gap: 14px; }
             .about-nav-item { gap: 10px; height: 14px; }
             .about-nav-item span { font-size: 0.45rem; letter-spacing: 1.5px; }
@@ -609,7 +593,6 @@
             }
             .timeline-viewport { max-height: 75dvh; }
 
-            /* Slide 6: References (Mantém exatamente os 3 cards e logos em escala) */
             .testi-content {
                 transform: scale(0.46);
                 transform-origin: center center;
@@ -617,7 +600,6 @@
             .testi-chevron-left { left: 18px; width: 18px; height: 18px; border-width: 3px; }
             .testi-chevron-right { right: 18px; width: 18px; height: 18px; border-width: 3px; }
 
-            /* Slide 7: Contact */
             .split-bl { bottom: 10px; left: 25px; font-size: 0.42rem; line-height: 1.65; }
             .contact-center-card {
                 transform: translate(-50%, -50%) scale(0.54);
@@ -628,7 +610,6 @@
                 transform-origin: bottom center;
             }
 
-            /* Prancha Horizontal Interna dos Projetos */
             .text-block-cover { top: 18%; width: 25vw; }
             .proj-eyebrow { font-size: 0.45rem; letter-spacing: 3px; margin-bottom: 5px; }
             .proj-title { font-size: 1.8vw; letter-spacing: 4px; margin-bottom: 10px; }
@@ -840,7 +821,7 @@
             </div>
         </section>
 
-        <!-- 5. ABOUT ME (FOTO À ESQUERDA + MENU + CONTEÚDO EDITORIAL) -->
+        <!-- 5. ABOUT ME (FOTO À ESQUERDA INTOCADA + MENU + CONTEÚDO EDITORIAL) -->
         <section class="section" data-name="About Me" data-theme="dark" style="padding: 0;">
             <div class="about-container-v2">
                 
@@ -1083,42 +1064,36 @@
                         <div class="testi-window">
                             <div class="testi-cards" id="testiCardsTrack">
                                 
-                                <!-- CARD 1 -->
                                 <div class="t-card">
                                     <p class="t-text">O domínio excepcional dos padrões de desenho técnico e a capacidade de transformar projetos complexos em documentações claras foram fundamentais para a aprovação dos nossos empreendimentos.</p>
                                     <div class="t-author"><div class="quote-mark">“</div><h4 class="c-name">MEGAN FERNANDEZ</h4><span class="c-role">Arquiteto Chefe - Perth, WA</span></div>
                                     <div class="t-logo-circle"><span class="c-circle-text">FPE</span></div>
                                 </div>
                                 
-                                <!-- CARD 2 -->
                                 <div class="t-card">
                                     <p class="t-text">A precisão na volumetria e o bom gosto na escolha dos materiais para os renders mudaram nossa forma de apresentar imóveis. Um parceiro essencial nas nossas rodadas de vendas.</p>
                                     <div class="t-author"><div class="quote-mark">“</div><h4 class="c-name">RAY OWENS</h4><span class="c-role">Diretor de Projetos - São Paulo, BR</span></div>
                                     <div class="t-logo-circle"><span class="c-circle-text">G5</span></div>
                                 </div>
                                 
-                                <!-- CARD 3 -->
                                 <div class="t-card">
                                     <p class="t-text">O detalhamento técnico e a compatibilização espacial dos projetos foram entregues com extremo rigor. Um excelente profissional que entende o balanço entre design e estrutura.</p>
                                     <div class="t-author"><div class="quote-mark">“</div><h4 class="c-name">JACK HOPKINS</h4><span class="c-role">Engenheiro Estrutural - Perth, WA</span></div>
                                     <div class="t-logo-circle"><span class="c-circle-text">APC</span></div>
                                 </div>
 
-                                <!-- CARD 4 (Cópia 1) -->
                                 <div class="t-card">
                                     <p class="t-text">O domínio excepcional dos padrões de desenho técnico e a capacidade de transformar projetos complexos em documentações claras foram fundamentais para a aprovação dos nossos empreendimentos.</p>
                                     <div class="t-author"><div class="quote-mark">“</div><h4 class="c-name">MEGAN FERNANDEZ</h4><span class="c-role">Arquiteto Chefe - Perth, WA</span></div>
                                     <div class="t-logo-circle"><span class="c-circle-text">FPE</span></div>
                                 </div>
                                 
-                                <!-- CARD 5 (Cópia 2) -->
                                 <div class="t-card">
                                     <p class="t-text">A precisão na volumetria e o bom gosto na escolha dos materiais para os renders mudaram nossa forma de apresentar imóveis. Um parceiro essencial nas nossas rodadas de vendas.</p>
                                     <div class="t-author"><div class="quote-mark">“</div><h4 class="c-name">RAY OWENS</h4><span class="c-role">Diretor de Projetos - São Paulo, BR</span></div>
                                     <div class="t-logo-circle"><span class="c-circle-text">G5</span></div>
                                 </div>
                                 
-                                <!-- CARD 6 (Cópia 3) -->
                                 <div class="t-card">
                                     <p class="t-text">O detalhamento técnico e a compatibilização espacial dos projetos foram entregues com extremo rigor. Um excelente profissional que entende o balanço entre design e estrutura.</p>
                                     <div class="t-author"><div class="quote-mark">“</div><h4 class="c-name">JACK HOPKINS</h4><span class="c-role">Engenheiro Estrutural - Perth, WA</span></div>
@@ -1241,6 +1216,33 @@
 
     <!-- SCRIPTS -->
     <script>
+        // --- CACHE DE PROPORÇÕES REAIS DAS IMAGENS (SMART COVER SEM DISTORÇÃO) ---
+        const imgAspectCache = {};
+
+        function extractRawUrl(cssUrl) {
+            if (!cssUrl) return '';
+            return cssUrl.replace(/^url\(["']?/, '').replace(/["']?\)$/, '').trim();
+        }
+
+        function getOrLoadAspect(cssUrl, callback) {
+            const rawUrl = extractRawUrl(cssUrl);
+            if (!rawUrl) return;
+            if (imgAspectCache[rawUrl]) {
+                callback(imgAspectCache[rawUrl]);
+                return;
+            }
+            // Fallback imediato 16:9 enquanto lê a dimensão natural
+            callback(16 / 9);
+            const probe = new Image();
+            probe.onload = function() {
+                if (probe.naturalWidth && probe.naturalHeight) {
+                    imgAspectCache[rawUrl] = probe.naturalWidth / probe.naturalHeight;
+                    callback(imgAspectCache[rawUrl]);
+                }
+            };
+            probe.src = rawUrl;
+        }
+
         // --- MODO TELA CHEIA AUTOMÁTICO NO PRIMEIRO TOQUE (APENAS CELULAR NA HORIZONTAL) ---
         function tryMobileFullscreen() {
             const isMobileLandscape = window.matchMedia("(max-height: 540px) and (orientation: landscape) and (pointer: coarse)").matches;
@@ -1281,7 +1283,7 @@
             }
         }
 
-        // --- FUNÇÃO DA TIMELINE (ALTURA EXATA E SCROLL INTELIGENTE APENAS SE FALTAR ESPAÇO) ---
+        // --- FUNÇÃO DA TIMELINE ---
         let currentExpIndex = 0;
         function updateTimeline() {
             const items = document.querySelectorAll('.timeline-item');
@@ -1369,7 +1371,7 @@
         }
         updateCursor();
 
-        // --- BANCO DE DADOS DOS PROJETOS (TODOS COM LINKS LIMPOS SEM VERSÃO) ---
+        // --- BANCO DE DADOS DOS PROJETOS ---
         const projectsData = {
             'pale-stone': {
                 eyebrow: 'ARCHITECTURE', title: 'TAIRU TOWNHOUSE', giant: 'TOWNHOUSES', loc: 'PERTH, WA', coords: '31.9523° S<br>115.8613° E',
@@ -1380,7 +1382,7 @@
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_1.png)',
-                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_2.jpg)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_1.png)',
                 imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_3.png)',
                 imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_4.png)',
                 imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_5.png)',
@@ -1395,7 +1397,7 @@
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_7.png)',
-                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_8.png)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_7.png)',
                 imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_9.png)',
                 imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_10.png)',
                 imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_11.png)',
@@ -1410,7 +1412,7 @@
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_13.png)',
-                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_14.png)',
+                imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_13.png)',
                 imgGrid1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_15.jpg)',
                 imgGrid2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_16.jpg)',
                 imgGrid3: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_17.jpg)',
@@ -1449,11 +1451,92 @@
         };
 
         let isProjectOpen = false;
+        let currentProjectId = null;
         let horizontalAnimationId;
+
+        const hTrack = document.getElementById('h-track');
+        const mapPanel = document.querySelector('.panel-map-image');
+        const matPanel = document.querySelector('.panel-materials');
+        const matImg = document.querySelector('.materials-img-area');
+        const gridPanel = document.querySelector('.panel-grid-section');
+        const finalePanel = document.querySelector('.panel-finale');
+        let targetScroll = 0, currentScroll = 0;
+        const ease = 0.08;
+        let mapStart = 0, matStart = 0, gridStart = 0, finaleStart = 0;
+        const PRLX_RANGE = 55; // Margem de segurança em pixels para o movimento de paralaxe sem repetir
+
+        // Calcula o Smart Cover sem distorção e sem duplicar nos blocos divididos e paralaxes
+        function updateSmartCovers() {
+            if (!isProjectOpen || !currentProjectId) return;
+            const data = projectsData[currentProjectId];
+            if (!data) return;
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+
+            // 1. Terceira imagem (Painel duplo: mat1 + mat2 formando 1 única imagem contínua sem esticar)
+            const mat1El = document.getElementById('dyn-img-mat1');
+            const mat2El = document.getElementById('dyn-img-mat2');
+            getOrLoadAspect(data.imgMat1, (ratio) => {
+                const boxW = vw * 0.51;
+                const boxH = vh;
+                const renderW = Math.max(boxW, boxH * ratio);
+                const renderH = Math.max(boxH, boxW / ratio);
+                const offsetX = (boxW - renderW) / 2;
+                const shift8vw = vw * 0.08;
+
+                const sizeStr = `${Math.ceil(renderW)}px ${Math.ceil(renderH)}px`;
+                mat2El.style.backgroundSize = sizeStr;
+                mat2El.style.backgroundPosition = `${offsetX}px bottom`;
+
+                mat1El.style.backgroundSize = sizeStr;
+                mat1El.style.backgroundPosition = `${offsetX - shift8vw}px bottom`;
+            });
+
+            // 2. Última imagem (Painel Finale: camada de trás + camada da frente 30vw formando 1 única imagem sem esticar)
+            const finBackEl = document.getElementById('dyn-finale-back');
+            const finFrontEl = document.getElementById('dyn-finale-front');
+            getOrLoadAspect(data.imgFinale, (ratio) => {
+                const renderW = Math.max(vw, vh * ratio);
+                const renderH = Math.max(vh, vw / ratio);
+                const offsetX = (vw - renderW) / 2;
+                const offsetY = (vh - renderH) / 2;
+
+                const sizeStr = `${Math.ceil(renderW)}px ${Math.ceil(renderH)}px`;
+                const posStr = `${offsetX}px ${offsetY}px`;
+                finBackEl.style.backgroundSize = sizeStr;
+                finBackEl.style.backgroundPosition = posStr;
+                finFrontEl.style.backgroundSize = sizeStr;
+                finFrontEl.style.backgroundPosition = posStr;
+            });
+
+            // 3. Imagens com Paralaxe Horizontal (Foto Vertical + 3 fotos do Mosaico)
+            // Dimensiona proporcionalmente com folga lateral (+2 * PRLX_RANGE) para nunca repetir nem cortar no paralaxe
+            const prlxConfigs = [
+                { id: 'dyn-img-vert', url: data.imgVert },
+                { id: 'dyn-grid1', url: data.imgGrid1 },
+                { id: 'dyn-grid2', url: data.imgGrid2 },
+                { id: 'dyn-grid3', url: data.imgGrid3 }
+            ];
+            prlxConfigs.forEach(cfg => {
+                const el = document.getElementById(cfg.id);
+                if (!el) return;
+                getOrLoadAspect(cfg.url, (ratio) => {
+                    const elW = el.offsetWidth || (vw * 0.2);
+                    const elH = el.offsetHeight || (vh * 0.55);
+                    const minW = elW + PRLX_RANGE * 2;
+                    const minH = elH;
+                    const renderW = Math.max(minW, minH * ratio);
+                    const renderH = Math.max(minH, minW / ratio);
+                    el.style.backgroundSize = `${Math.ceil(renderW)}px ${Math.ceil(renderH)}px`;
+                });
+            });
+        }
 
         function openProject(id) {
             const data = projectsData[id];
             if(!data) return;
+            currentProjectId = id;
 
             document.getElementById('dyn-eyebrow').innerText = data.eyebrow; document.getElementById('dyn-title').innerText = data.title;
             document.getElementById('dyn-giant').innerText = data.giant; document.getElementById('dyn-coord-loc').innerText = data.loc;
@@ -1467,19 +1550,22 @@
             document.getElementById('dyn-grid3').style.backgroundImage = data.imgGrid3; document.getElementById('dyn-finale-back').style.backgroundImage = data.imgFinale;
             document.getElementById('dyn-finale-front').style.backgroundImage = data.imgFinale;
 
-            setTimeout(fitGiantTextToHeight, 100);
-
             const viewer = document.getElementById('project-viewer');
             viewer.style.display = 'block';
+            isProjectOpen = true;
+            calculateOffsets();
+            updateSmartCovers();
+
             setTimeout(() => {
                 viewer.style.opacity = '1';
-                isProjectOpen = true;
                 document.querySelectorAll('.proj-anim').forEach(el => { el.classList.remove('visible'); el.classList.add('fade-up'); });
                 setTimeout(() => {
                     const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.15 });
                     document.querySelectorAll('.proj-anim').forEach(el => observer.observe(el));
                     targetScroll = 0; currentScroll = 0;
-                    calculateOffsets(); animateHorizontalScroll();
+                    calculateOffsets();
+                    updateSmartCovers();
+                    animateHorizontalScroll();
                 }, 100);
             }, 50);
         }
@@ -1492,29 +1578,60 @@
             setTimeout(() => { viewer.style.display = 'none'; }, 500);
         }
 
-        // --- SCROLL HORIZONTAL DA PRANCHA ---
-        const hTrack = document.getElementById('h-track'); const matPanel = document.querySelector('.panel-materials');
-        const matImg = document.querySelector('.materials-img-area'); const finalePanel = document.querySelector('.panel-finale');
-        let targetScroll = 0, currentScroll = 0; const ease = 0.08; let matStart = 0, finaleStart = 0;
-        
-        function calculateOffsets() { if(!isProjectOpen) return; matStart = matPanel.offsetLeft; finaleStart = finalePanel.offsetLeft; fitGiantTextToHeight(); }
+        // --- SCROLL HORIZONTAL DA PRANCHA + PARALAXE SUAVE SEM REPETIÇÃO ---
+        function calculateOffsets() {
+            if(!isProjectOpen) return;
+            mapStart = mapPanel.offsetLeft;
+            matStart = matPanel.offsetLeft;
+            gridStart = gridPanel.offsetLeft;
+            finaleStart = finalePanel.offsetLeft;
+            fitGiantTextToHeight();
+            updateSmartCovers();
+        }
         
         function animateHorizontalScroll() {
             if(!isProjectOpen) return;
             currentScroll += (targetScroll - currentScroll) * ease;
             hTrack.style.transform = `translate3d(-${currentScroll}px, 0, 0)`;
-            document.documentElement.style.setProperty('--prlx-slow', (currentScroll * 0.15) + 'px');
 
+            const vw = window.innerWidth;
+            const viewCenter = currentScroll + vw * 0.5;
+
+            // Paralaxe suave na Foto Vertical (Painel Mapa)
+            const mapCenter = mapStart + mapPanel.offsetWidth * 0.5;
+            const mapProgress = Math.max(-1, Math.min(1, (viewCenter - mapCenter) / vw));
+            const vertShift = mapProgress * PRLX_RANGE;
+            const vertEl = document.getElementById('dyn-img-vert');
+            if (vertEl) vertEl.style.backgroundPosition = `calc(50% + ${vertShift.toFixed(1)}px) center`;
+
+            // Paralaxe suave nas 3 fotos do Mosaico (Painel Grid)
+            const gridCenter = gridStart + gridPanel.offsetWidth * 0.5;
+            const gridProgress = Math.max(-1, Math.min(1, (viewCenter - gridCenter) / vw));
+            const gridShift = gridProgress * PRLX_RANGE;
+            const g1 = document.getElementById('dyn-grid1');
+            const g2 = document.getElementById('dyn-grid2');
+            const g3 = document.getElementById('dyn-grid3');
+            const gridPosStr = `calc(50% + ${gridShift.toFixed(1)}px) center`;
+            if (g1) g1.style.backgroundPosition = gridPosStr;
+            if (g2) g2.style.backgroundPosition = gridPosStr;
+            if (g3) g3.style.backgroundPosition = gridPosStr;
+
+            // Movimento fixo do Painel de Materiais
             if (currentScroll > matStart && currentScroll < matStart + matPanel.offsetWidth) {
                 matImg.style.transform = `translate3d(${currentScroll - matStart}px, 0, 0)`;
             } else if (currentScroll >= matStart + matPanel.offsetWidth) {
                 matImg.style.transform = `translate3d(${matPanel.offsetWidth}px, 0, 0)`;
             } else { matImg.style.transform = `translate3d(0, 0, 0)`; }
 
-            if (currentScroll >= finaleStart - window.innerWidth) { finalePanel.style.transform = `translate3d(${currentScroll - finaleStart}px, 0, 0)`;
-            } else { finalePanel.style.transform = `translate3d(0, 0, 0)`; }
+            // Movimento fixo do Painel Finale
+            if (currentScroll >= finaleStart - vw) {
+                finalePanel.style.transform = `translate3d(${currentScroll - finaleStart}px, 0, 0)`;
+            } else {
+                finalePanel.style.transform = `translate3d(0, 0, 0)`;
+            }
             horizontalAnimationId = requestAnimationFrame(animateHorizontalScroll);
         }
+
         function fitGiantTextToHeight() {
             const textElement = document.getElementById('dyn-giant'); if(!textElement) return;
             textElement.style.transform = 'none'; textElement.style.fontSize = '10px'; 
@@ -1530,7 +1647,7 @@
 
         let isGalleryViewerOpen = false; let isGridViewerOpen = false;
 
-        // --- LÓGICA DO CARROSSEL DE TESTEMUNHOS ATUALIZADO (480px = 440 card + 40 gap) ---
+        // --- LÓGICA DO CARROSSEL DE TESTEMUNHOS ---
         const testiCardsTrack = document.getElementById('testiCardsTrack');
         const btnTestiNext = document.getElementById('testiNext');
         const btnTestiPrev = document.getElementById('testiPrev');
@@ -1581,7 +1698,7 @@
         if(btnGridFsNext && btnGridFsPrev) { btnGridFsNext.addEventListener('click', (e) => { e.stopPropagation(); currentFsIndex = (currentFsIndex + 1) % gridPlants.length; gridFullscreenImg.src = gridPlants[currentFsIndex].src; }); btnGridFsPrev.addEventListener('click', (e) => { e.stopPropagation(); currentFsIndex = (currentFsIndex - 1 + gridPlants.length) % gridPlants.length; gridFullscreenImg.src = gridPlants[currentFsIndex].src; }); }
         if(closeGridHint) { closeGridHint.addEventListener('click', (e) => { e.stopPropagation(); isGridViewerOpen = false; gridFullscreenViewer.classList.remove('active'); gridViewport.classList.remove('viewer-open'); }); }
 
-        // --- ARRAY COM AS 20 IMAGENS DE RENDER, EMBARALHADAS ---
+        // --- GALERIA 3D COM QUEBRA-CABEÇA DE 40 PEÇAS (SEM ESTICAR E SEM DUPLICAR) ---
         const baseUrls = [
             'https://res.cloudinary.com/bd9lafhm/image/upload/Render_1.png',
             'https://res.cloudinary.com/bd9lafhm/image/upload/Render_15.jpg',
@@ -1611,9 +1728,66 @@
         const galleryUrls = []; for(let i=0; i<40; i++) { galleryUrls.push(baseUrls[i % baseUrls.length]); }
         
         const galleryContainer = document.getElementById('renderGallery'); const infoOverlay = document.getElementById('projectInfoOverlay'); const infoTitle = document.getElementById('infoTitle'); const infoSubtitle = document.getElementById('infoSubtitle'); const close3DHint = document.getElementById('closeHint');
-        const columnsGrid = 8; const rowsGrid = 5; const items = []; const backs = []; let lastClickedIndex = 0;
+        const columnsGrid = 8; const rowsGrid = 5; const items = []; const backs = []; let lastClickedIndex = 0; let currentGalleryFullUrl = '';
+
+        function updateGalleryPuzzleCover(cssUrl) {
+            if (!cssUrl) return;
+            getOrLoadAspect(cssUrl, (ratio) => {
+                const vw = window.innerWidth;
+                const vh = window.innerHeight;
+                const renderW = Math.max(vw, vh * ratio);
+                const renderH = Math.max(vh, vw / ratio);
+                const offsetX = (vw - renderW) / 2;
+                const offsetY = (vh - renderH) / 2;
+                const cardW = vw / columnsGrid;
+                const cardH = vh / rowsGrid;
+                const sizeStr = `${Math.ceil(renderW)}px ${Math.ceil(renderH)}px`;
+
+                backs.forEach((b, idx) => {
+                    const c = idx % columnsGrid;
+                    const r = Math.floor(idx / columnsGrid);
+                    const posX = offsetX - c * cardW;
+                    const posY = offsetY - r * cardH;
+                    b.style.backgroundImage = cssUrl;
+                    b.style.backgroundSize = sizeStr;
+                    b.style.backgroundPosition = `${posX.toFixed(1)}px ${posY.toFixed(1)}px`;
+                });
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            if (isGalleryViewerOpen && currentGalleryFullUrl) {
+                updateGalleryPuzzleCover(currentGalleryFullUrl);
+            }
+        });
+
         function close3DViewer() { if (!isGalleryViewerOpen) return; infoOverlay.classList.remove('active'); close3DHint.classList.remove('active'); const clickedCol = lastClickedIndex % columnsGrid; const clickedRow = Math.floor(lastClickedIndex / columnsGrid); let maxDelay = 0; items.forEach((item, j) => { const c = j % columnsGrid; const r = Math.floor(j / columnsGrid); const distance = Math.hypot(clickedCol - c, clickedRow - r); const delay = distance * 60; if (delay > maxDelay) maxDelay = delay; setTimeout(() => { item.classList.remove('flipped'); }, delay); }); setTimeout(() => { isGalleryViewerOpen = false; galleryContainer.classList.remove('is-flipped'); }, maxDelay + 600); }
-        if(galleryContainer) { for (let i = 0; i < 40; i++) { const div = document.createElement('div'); div.className = 'gallery-item'; const front = document.createElement('div'); front.className = 'front'; front.style.backgroundImage = `url('${galleryUrls[i]}')`; const back = document.createElement('div'); back.className = 'back'; const col = i % columnsGrid; const row = Math.floor(i / columnsGrid); const xPos = (col / (columnsGrid - 1)) * 100; const yPos = (row / (rowsGrid - 1)) * 100; back.style.backgroundPosition = `${xPos}% ${yPos}%`; div.appendChild(front); div.appendChild(back); galleryContainer.appendChild(div); items.push(div); backs.push(back); div.addEventListener('click', function(e) { e.stopPropagation(); if (isGalleryViewerOpen) { close3DViewer(); return; } isGalleryViewerOpen = true; lastClickedIndex = i; galleryContainer.classList.add('is-flipped'); infoTitle.textContent = projectTitles[i % projectTitles.length]; infoSubtitle.textContent = projectSubtitles[i % projectSubtitles.length]; const fullResUrl = front.style.backgroundImage; backs.forEach(b => b.style.backgroundImage = fullResUrl); items.forEach((item, j) => { const c = j % columnsGrid; const r = Math.floor(j / columnsGrid); const distance = Math.hypot(col - c, row - r); setTimeout(() => { item.classList.add('flipped'); }, distance * 60); }); setTimeout(() => { infoOverlay.classList.add('active'); close3DHint.classList.add('active'); }, 800); }); } }
+        if(galleryContainer) {
+            for (let i = 0; i < 40; i++) {
+                const div = document.createElement('div'); div.className = 'gallery-item';
+                const front = document.createElement('div'); front.className = 'front'; front.style.backgroundImage = `url('${galleryUrls[i]}')`;
+                const back = document.createElement('div'); back.className = 'back';
+                const col = i % columnsGrid; const row = Math.floor(i / columnsGrid);
+                div.appendChild(front); div.appendChild(back); galleryContainer.appendChild(div);
+                items.push(div); backs.push(back);
+                div.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (isGalleryViewerOpen) { close3DViewer(); return; }
+                    isGalleryViewerOpen = true; lastClickedIndex = i;
+                    galleryContainer.classList.add('is-flipped');
+                    infoTitle.textContent = projectTitles[i % projectTitles.length];
+                    infoSubtitle.textContent = projectSubtitles[i % projectSubtitles.length];
+                    currentGalleryFullUrl = front.style.backgroundImage;
+                    updateGalleryPuzzleCover(currentGalleryFullUrl);
+                    items.forEach((item, j) => {
+                        const c = j % columnsGrid; const r = Math.floor(j / columnsGrid);
+                        const distance = Math.hypot(col - c, row - r);
+                        setTimeout(() => { item.classList.add('flipped'); }, distance * 60);
+                    });
+                    setTimeout(() => { infoOverlay.classList.add('active'); close3DHint.classList.add('active'); }, 800);
+                });
+            }
+        }
         if (close3DHint) { close3DHint.addEventListener('click', close3DViewer); }
 
         const sideLabel = document.getElementById('sideLabel'); const dots = document.querySelectorAll('.dot-item'); const topNav = document.getElementById('topNav'); const rightSidebar = document.getElementById('rightSidebar');
@@ -1687,7 +1861,7 @@
             const counter = document.getElementById('preloaderCounter');
             const title = document.getElementById('preloaderTitle');
             const subtitle = document.getElementById('preloaderSubtitle');
-            const circumference = 2 * Math.PI * 60; // ~377
+            const circumference = 2 * Math.PI * 60;
 
             const urlsToLoad = new Set();
 
@@ -1699,6 +1873,12 @@
                 if (bg) urlsToLoad.add(bg);
             });
             baseUrls.forEach(url => urlsToLoad.add(url));
+            Object.values(projectsData).forEach(proj => {
+                [proj.imgCapa, proj.imgVert, proj.imgMat1, proj.imgGrid1, proj.imgGrid2, proj.imgGrid3, proj.imgFinale].forEach(u => {
+                    const raw = extractRawUrl(u);
+                    if (raw) urlsToLoad.add(raw);
+                });
+            });
             urlsToLoad.add('https://res.cloudinary.com/bd9lafhm/image/upload/f_auto,q_auto/Gemini_Generated_Image_hgkr97hgkr97hgkr');
 
             const urlsArray = Array.from(urlsToLoad);
@@ -1718,23 +1898,22 @@
             } else {
                 urlsArray.forEach(url => {
                     const img = new Image();
-                    img.onload = onAssetProgress;
+                    img.onload = function() {
+                        if (img.naturalWidth && img.naturalHeight) {
+                            imgAspectCache[url] = img.naturalWidth / img.naturalHeight;
+                        }
+                        onAssetProgress();
+                    };
                     img.onerror = onAssetProgress;
                     img.src = url;
                 });
             }
 
-            // Trava de segurança
             setTimeout(() => { actualPercent = 100; }, 7000);
 
-            // Atualiza a inversão de cores conforme o percentual (0 a 100)
             function applyInversion(percent) {
                 const t = Math.max(0, Math.min(1, percent / 100));
-
-                // Fundo: vai gradualmente do preto (8) ao branco (252)
                 const bgVal = Math.round(8 + t * 244);
-
-                // Símbolos e Textos: invertem do branco (245) ao preto (12) com curva S para manter contraste no meio
                 const sCurve = 0.5 + 0.5 * Math.tanh(6 * (t - 0.5));
                 const fgProgress = 0.25 * t + 0.75 * sCurve;
                 const fgVal = Math.round(245 - fgProgress * 233);
