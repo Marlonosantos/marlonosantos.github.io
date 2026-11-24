@@ -170,8 +170,8 @@
         .section.slide-up { transform: translateY(-100%); box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
 
         /* --- SLIDE 1: HOME --- */
-        .home-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translateX(-50%) translateY(-50%); z-index: -1; opacity: 0.6; background: #2a332e; }
-        .home-content { text-align: center; z-index: 1; }
+        .home-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; opacity: 0.6; background: #2a332e; pointer-events: none; }
+        .home-content { position: relative; text-align: center; z-index: 2; }
         .home-content h1 { font-size: 4rem; letter-spacing: 4px; }
 
         /* --- SLIDE 2: COLUNAS DE PROJETOS --- */
@@ -397,7 +397,9 @@
         .softwares-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; }
         .software-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 15px 5px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; transition: border-color 0.3s; }
         .software-card:hover { border-color: rgba(255,255,255,0.4); }
-        .sw-icon { font-size: 1.4rem; font-weight: 300; color: #fff; display: flex; align-items: center; justify-content: center; }
+        .sw-icon { height: 34px; font-size: 1.4rem; font-weight: 300; color: #fff; display: flex; align-items: center; justify-content: center; }
+        .sw-logo-img { max-width: 34px; max-height: 30px; width: auto; height: auto; object-fit: contain; display: block; opacity: 0.9; transition: transform 0.3s ease, opacity 0.3s ease; }
+        .software-card:hover .sw-logo-img { opacity: 1; transform: scale(1.08); }
         .sw-name { font-size: 0.55rem; color: #888; font-weight: 400; letter-spacing: 1px; }
 
         .skills-container { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; }
@@ -500,15 +502,10 @@
 
         .panel-map-image, .panel-blueprints, .panel-materials, .panel-grid-section { position: relative; flex-shrink: 0; background-color: #F4F4F2; z-index: 10; margin-left: -1px; }
 
-        .panel-map-image { width: 60vw; height: 100vh; height: 100dvh; }
-        .coord-block { position: absolute; top: 28%; left: 18vw; text-align: left; }
-        .coord-title { font-size: 0.75rem; font-weight: 600; letter-spacing: 6px; color: #999; margin-bottom: 12px; }
-        .coord-data { font-size: 0.65rem; font-weight: 400; letter-spacing: 3px; color: #aaa; line-height: 2; }
-        .compass { position: absolute; bottom: 25%; left: 24vw; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .compass span { font-size: 0.65rem; font-weight: 500; color: #999; }
-        .compass-circle { width: 30px; height: 30px; border: 1px solid #ccc; border-radius: 50%; display: flex; justify-content: center; position: relative; }
-        .compass-line { width: 1px; height: 10px; background-color: #aaa; margin-top: 4px; }
-        .vertical-photo { position: absolute; top: 15%; right: 5vw; width: 17vw; height: 70%; background-repeat: no-repeat; background-position: center; overflow: hidden; }
+        .panel-map-image { width: max-content; min-width: 68vw; height: 100vh; height: 100dvh; display: flex; align-items: center; padding-left: 3vw; padding-right: 5vw; gap: 12vw; isolation: isolate; }
+        .project-map-box { width: 58vh; width: 58dvh; height: 58vh; height: 58dvh; aspect-ratio: 1 / 1; flex-shrink: 0; align-self: flex-start; margin-top: 25vh; margin-top: 25dvh; background-color: rgba(0, 0, 0, 0.05); border: 2px dashed rgba(0, 0, 0, 0.25); background-repeat: no-repeat; background-position: center; background-size: contain; overflow: hidden; }
+        .project-map-box.has-map { background-color: transparent; border: none; mix-blend-mode: multiply; filter: brightness(1.05) contrast(1.08); }
+        .vertical-photo { position: relative; width: 17vw; height: 70%; flex-shrink: 0; background-repeat: no-repeat; background-position: center; overflow: hidden; }
 
         .panel-blueprints { width: 110vw; height: 100vh; height: 100dvh; display: flex; align-items: center; }
         .blueprints-left { width: 50vw; height: 80%; padding-left: 5vw; display: flex; flex-direction: column; justify-content: space-between; }
@@ -616,10 +613,8 @@
             .proj-divider { width: 25px; margin-bottom: 14px; }
             .proj-paragraph { font-size: 0.5rem; line-height: 1.85; }
             .proj-text-large { font-size: 0.55rem; line-height: 1.85; min-width: 200px; width: 28vw; }
-            .coord-block { top: 22%; }
-            .coord-title { font-size: 0.52rem; letter-spacing: 4px; margin-bottom: 6px; }
-            .coord-data { font-size: 0.48rem; line-height: 1.7; }
-            .compass { bottom: 18%; }
+            .panel-map-image { padding-left: 3vw; padding-right: 5vw; gap: 10vw; }
+            .project-map-box { width: 58dvh; height: 58dvh; margin-top: 22dvh; }
             .blueprint-label { font-size: 0.42rem; }
             .label-num { font-size: 0.58rem; }
             .label-text { font-size: 0.42rem; letter-spacing: 3px; }
@@ -687,8 +682,9 @@
         
         <!-- 1. HOME -->
         <section class="section" data-name="Home" data-theme="dark">
-            <video class="home-video" autoplay muted loop playsinline>
-                <source src="https://res.cloudinary.com/bd9lafhm/video/upload/Animate_architectural_images_616fd6f1_1080p.mp4" type="video/mp4">
+            <video class="home-video" id="homeVideo" autoplay muted loop playsinline preload="auto">
+                <source src="https://res.cloudinary.com/bd9lafhm/video/upload/f_mp4,vc_h264,q_auto/Video.mp4" type="video/mp4">
+                <source src="https://res.cloudinary.com/bd9lafhm/video/upload/Video.mp4" type="video/mp4">
             </video>
             <div class="home-content">
                 <h1>SEU NOME</h1>
@@ -1011,15 +1007,17 @@
                                 <div>
                                     <div class="tab-header" style="margin-bottom:15px;">SOFTWARES <div class="tab-header-line"></div></div>
                                     <div class="softwares-grid">
-                                        <div class="software-card"><div class="sw-icon">A</div><div class="sw-name">AutoCAD</div></div>
-                                        <div class="software-card"><div class="sw-icon">R</div><div class="sw-name">Revit</div></div>
-                                        <div class="software-card"><div class="sw-icon" style="font-size: 1.2rem;">[S]</div><div class="sw-name">SketchUp</div></div>
-                                        <div class="software-card"><div class="sw-icon">3</div><div class="sw-name">3ds Max</div></div>
-                                        <div class="software-card"><div class="sw-icon" style="font-size: 1.2rem;">(L)</div><div class="sw-name">Lumion</div></div>
-                                        <div class="software-card"><div class="sw-icon">∩</div><div class="sw-name">ArchiCAD</div></div>
-                                        <div class="software-card"><div class="sw-icon">N</div><div class="sw-name">Navisworks</div></div>
-                                        <div class="software-card"><div class="sw-icon">∞</div><div class="sw-name">Adobe CC</div></div>
-                                        <div class="software-card"><div class="sw-icon">⊞</div><div class="sw-name">Microsoft Office</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/AUTOCAD.png" alt="AutoCAD"></div><div class="sw-name">AutoCAD</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/REVIT.png" alt="Revit"></div><div class="sw-name">Revit</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/SKETCHUP.png" alt="SketchUp"></div><div class="sw-name">SketchUp</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/3DS.png" alt="3ds Max"></div><div class="sw-name">3ds Max</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/LUMION.png" alt="Lumion"></div><div class="sw-name">Lumion</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/ARCHI_.png" alt="ArchiCAD"></div><div class="sw-name">ArchiCAD</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/PHOTOSHOP.png" alt="Photoshop"></div><div class="sw-name">Photoshop</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/Sem_T%C3%ADtulo-2.png" alt="Illustrator"></div><div class="sw-name">Illustrator</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/PREMIERE.png" alt="Premiere"></div><div class="sw-name">Premiere</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/navisworks.png" alt="Navisworks"></div><div class="sw-name">Navisworks</div></div>
+                                        <div class="software-card"><div class="sw-icon"><img class="sw-logo-img" src="https://res.cloudinary.com/bd9lafhm/image/upload/office.png" alt="Microsoft Office"></div><div class="sw-name">Microsoft Office</div></div>
                                         <div class="software-card"><div class="sw-icon" style="font-size: 1.1rem; border:1px solid #fff; border-radius:3px; padding:2px 4px;">12d</div><div class="sw-name">12d</div></div>
                                     </div>
                                 </div>
@@ -1162,8 +1160,7 @@
             </div>
 
             <div class="panel-map-image">
-                <div class="coord-block proj-anim"><div class="coord-title" id="dyn-coord-loc">LOCATION</div><div class="coord-data" id="dyn-coord-val">00° S<br>00° E</div></div>
-                <div class="compass proj-anim"><span>N</span><div class="compass-circle"><div class="compass-line"></div></div></div>
+                <div class="project-map-box proj-anim hover-trigger" id="dyn-map"></div>
                 <div class="vertical-photo hover-trigger" id="dyn-img-vert"></div>
             </div>
 
@@ -1380,6 +1377,7 @@
                 desc3: 'Natural materials were selected to respect the pristine environment. Locally sourced pale stone, untreated wood, and exposed concrete work synchronously.',
                 finEye: 'A PLACE', finTitle: 'TO BREATHE',
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_01.jpg)',
+                imgMap: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/TAIRU.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_02.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_04.jpg)',
                 imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project1_04.jpg)',
@@ -1395,6 +1393,7 @@
                 desc3: 'Locally sourced timber and meticulous joinery highlight the craftsmanship of this home. The natural finish of the wood acts as a living skin.',
                 finEye: 'LIVING IN', finTitle: 'HARMONY',
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)',
+                imgMap: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Pra%C3%A7a_da_Juventude.png)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project2__01.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_7.png)',
                 imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Render_7.png)',
@@ -1410,6 +1409,7 @@
                 desc3: 'The finishes combine polished concrete with minimalist glass facades. The interplay between massive blocks and transparent voids forms the core narrative.',
                 finEye: 'PURE', finTitle: 'FORM',
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)',
+                imgMap: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Casa-da-fonte.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__01.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__02.jpg)',
                 imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project3__02.jpg)',
@@ -1425,6 +1425,7 @@
                 desc3: 'Exposed steel beams and industrial joints are celebrated rather than hidden. Technical anti-corrosive treatments highlight the metallic textures.',
                 finEye: 'THE ART OF', finTitle: 'ENGINEERING',
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_01.jpg)',
+                imgMap: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Av._Matriz.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_04.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_03.jpg)',
                 imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project4_03.jpg)',
@@ -1440,6 +1441,7 @@
                 desc3: 'Soft textures and muted tones allow the lighting to take center stage. Matte architectural finishes were chosen over glossy surfaces.',
                 finEye: 'CHASING', finTitle: 'THE LIGHT',
                 imgCapa: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_01.jpg)',
+                imgMap: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/CRCS.jpg)',
                 imgVert: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_06.jpg)',
                 imgMat1: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_03.jpg)',
                 imgMat2: 'url(https://res.cloudinary.com/bd9lafhm/image/upload/Project5_03.jpg)',
@@ -1539,12 +1541,21 @@
             currentProjectId = id;
 
             document.getElementById('dyn-eyebrow').innerText = data.eyebrow; document.getElementById('dyn-title').innerText = data.title;
-            document.getElementById('dyn-giant').innerText = data.giant; document.getElementById('dyn-coord-loc').innerText = data.loc;
-            document.getElementById('dyn-coord-val').innerHTML = data.coords; document.getElementById('dyn-desc1').innerText = data.desc1;
+            document.getElementById('dyn-giant').innerText = data.giant; document.getElementById('dyn-desc1').innerText = data.desc1;
             document.getElementById('dyn-desc2').innerText = data.desc2; document.getElementById('dyn-desc3').innerText = data.desc3;
             document.getElementById('dyn-fin-eye').innerText = data.finEye; document.getElementById('dyn-fin-title').innerText = data.finTitle;
             
             document.getElementById('dyn-bg').style.backgroundImage = data.imgCapa; document.getElementById('dyn-img-vert').style.backgroundImage = data.imgVert;
+            const mapEl = document.getElementById('dyn-map');
+            if (mapEl) {
+                if (data.imgMap) {
+                    mapEl.style.backgroundImage = data.imgMap;
+                    mapEl.classList.add('has-map');
+                } else {
+                    mapEl.style.backgroundImage = 'none';
+                    mapEl.classList.remove('has-map');
+                }
+            }
             document.getElementById('dyn-img-mat1').style.backgroundImage = data.imgMat1; document.getElementById('dyn-img-mat2').style.backgroundImage = data.imgMat2;
             document.getElementById('dyn-grid1').style.backgroundImage = data.imgGrid1; document.getElementById('dyn-grid2').style.backgroundImage = data.imgGrid2;
             document.getElementById('dyn-grid3').style.backgroundImage = data.imgGrid3; document.getElementById('dyn-finale-back').style.backgroundImage = data.imgFinale;
@@ -1598,11 +1609,13 @@
             const viewCenter = currentScroll + vw * 0.5;
 
             // Paralaxe suave na Foto Vertical (Painel Mapa)
-            const mapCenter = mapStart + mapPanel.offsetWidth * 0.5;
-            const mapProgress = Math.max(-1, Math.min(1, (viewCenter - mapCenter) / vw));
-            const vertShift = mapProgress * PRLX_RANGE;
             const vertEl = document.getElementById('dyn-img-vert');
-            if (vertEl) vertEl.style.backgroundPosition = `calc(50% + ${vertShift.toFixed(1)}px) center`;
+            if (vertEl) {
+                const vertCenter = mapStart + vertEl.offsetLeft + vertEl.offsetWidth * 0.5;
+                const mapProgress = Math.max(-1, Math.min(1, (viewCenter - vertCenter) / vw));
+                const vertShift = mapProgress * PRLX_RANGE;
+                vertEl.style.backgroundPosition = `calc(50% + ${vertShift.toFixed(1)}px) center`;
+            }
 
             // Paralaxe suave nas 3 fotos do Mosaico (Painel Grid)
             const gridCenter = gridStart + gridPanel.offsetWidth * 0.5;
@@ -1850,6 +1863,24 @@
         }
         window.addEventListener('load', applyAdaptiveContactColors);
 
+        // --- GARANTIA DE REPRODUÇÃO DO VÍDEO DE CAPA (HOME) ---
+        const homeVideo = document.getElementById('homeVideo');
+        function ensureHomeVideoPlaying() {
+            if (!homeVideo) return;
+            homeVideo.muted = true;
+            homeVideo.defaultMuted = true;
+            const playPromise = homeVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {});
+            }
+        }
+        if (homeVideo) {
+            homeVideo.addEventListener('loadeddata', ensureHomeVideoPlaying);
+            homeVideo.addEventListener('canplay', ensureHomeVideoPlaying);
+            window.addEventListener('load', ensureHomeVideoPlaying);
+            ensureHomeVideoPlaying();
+        }
+
         // =========================================================
         // LÓGICA DO PRELOADER CIRCULAR COM INVERSÃO GRADUAL (PRETO -> BRANCO)
         // =========================================================
@@ -1874,7 +1905,7 @@
             });
             baseUrls.forEach(url => urlsToLoad.add(url));
             Object.values(projectsData).forEach(proj => {
-                [proj.imgCapa, proj.imgVert, proj.imgMat1, proj.imgGrid1, proj.imgGrid2, proj.imgGrid3, proj.imgFinale].forEach(u => {
+                [proj.imgCapa, proj.imgMap, proj.imgVert, proj.imgMat1, proj.imgGrid1, proj.imgGrid2, proj.imgGrid3, proj.imgFinale].forEach(u => {
                     const raw = extractRawUrl(u);
                     if (raw) urlsToLoad.add(raw);
                 });
@@ -1958,6 +1989,7 @@
                     setTimeout(() => {
                         if (preloader) preloader.classList.add('loaded');
                         document.body.classList.add('site-loaded');
+                        ensureHomeVideoPlaying();
                     }, 450);
                 } else {
                     requestAnimationFrame(animateProgress);
